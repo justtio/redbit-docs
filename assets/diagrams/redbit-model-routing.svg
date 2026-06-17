@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Redbit model and provider routing</title>
+  <desc id="desc">A diagram showing settings, model registry, payload builders, direct provider routes, relay routes, and agent capability profiles.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .node { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .settings { fill: #fff1f2; stroke: #fb7185; }
+      .registry { fill: #eff6ff; stroke: #60a5fa; }
+      .payload { fill: #f5f3ff; stroke: #a78bfa; }
+      .route { fill: #ecfdf5; stroke: #34d399; }
+      .warn { fill: #fffbeb; stroke: #f59e0b; }
+      .title { font: 700 28px Inter, Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Inter, Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Inter, Arial, sans-serif; fill: #475569; }
+      .tiny { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; text-transform: uppercase; }
+      .line { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="72" y="70">Model Registry and Provider Routing</text>
+  <text class="small" x="72" y="100">Generation cards and the Agent resolve models through settings, catalog metadata, and provider-specific payload builders.</text>
+
+  <rect class="settings" x="80" y="170" width="220" height="128" rx="18"/>
+  <text class="label" x="112" y="212">Settings</text>
+  <text class="small" x="112" y="240">Selected mode, model,</text>
+  <text class="small" x="112" y="262">variant, credentials,</text>
+  <text class="small" x="112" y="284">relay preference</text>
+
+  <rect class="registry" x="392" y="150" width="248" height="168" rx="18"/>
+  <text class="label" x="424" y="192">Model registry</text>
+  <text class="small" x="424" y="220">Image, video, speech,</text>
+  <text class="small" x="424" y="242">audio, describe catalogs</text>
+  <text class="small" x="424" y="264">ratios, variants, input</text>
+  <text class="small" x="424" y="286">requirements</text>
+
+  <rect class="payload" x="732" y="150" width="248" height="168" rx="18"/>
+  <text class="label" x="764" y="192">Payload builders</text>
+  <text class="small" x="764" y="220">Provider-specific request</text>
+  <text class="small" x="764" y="242">shape, response parser,</text>
+  <text class="small" x="764" y="264">polling route, and</text>
+  <text class="small" x="764" y="286">media mapping</text>
+
+  <rect class="route" x="1068" y="118" width="150" height="96" rx="16"/>
+  <text class="label" x="1092" y="158">Direct</text>
+  <text class="small" x="1092" y="184">configured</text>
+  <text class="small" x="1092" y="204">provider</text>
+
+  <rect class="route" x="1068" y="254" width="150" height="96" rx="16"/>
+  <text class="label" x="1092" y="294">Relay</text>
+  <text class="small" x="1092" y="320">grsai, wavespeed,</text>
+  <text class="small" x="1092" y="340">plato, acedata, other</text>
+
+  <rect class="warn" x="392" y="430" width="248" height="132" rx="18"/>
+  <text class="label" x="424" y="472">Agent profiles</text>
+  <text class="small" x="424" y="500">Catalog-backed or probed</text>
+  <text class="small" x="424" y="522">tool, JSON, vision,</text>
+  <text class="small" x="424" y="544">system prompt support</text>
+
+  <rect class="node" x="732" y="430" width="248" height="132" rx="18"/>
+  <text class="label" x="764" y="472">Runtime policy</text>
+  <text class="small" x="764" y="500">Direct, relay, custom</text>
+  <text class="small" x="764" y="522">protocol, fallback,</text>
+  <text class="small" x="764" y="544">capability warnings</text>
+
+  <path class="line" d="M300 234 H392"/>
+  <path class="line" d="M640 234 H732"/>
+  <path class="line" d="M980 194 C1028 178 1036 166 1068 166"/>
+  <path class="line" d="M980 274 C1030 292 1038 302 1068 302"/>
+  <path class="line" d="M516 318 V430"/>
+  <path class="line" d="M640 496 H732"/>
+</svg>

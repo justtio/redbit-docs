@@ -1,0 +1,97 @@
+---
+title: "Studio Workspace Overview"
+description: "A precise product map for Redbit AI's card canvas, Workshop, Agent runtime, model registry, provider routing, and local-first asset reuse."
+---
+
+# Studio Workspace Overview
+
+Redbit AI is a creative production workspace for turning prompts, source media, and reusable assets into image, video, speech, audio, and project outputs. The core workspace is built around independent task cards, an Asset Dock, a Creative Workshop, a guarded Agent layer, and explicit model/provider configuration.
+
+![Product map of Redbit AI showing inputs, workspace modules, execution layer, and reusable outputs.](../../assets/diagrams/redbit-product-map.svg)
+
+## Who Should Read This
+
+| Reader | Use this page to |
+| --- | --- |
+| New users | Understand the main workspace areas before the first generation |
+| Customer-facing teams | Explain what Redbit coordinates and what remains provider-owned |
+| Team members | Align product, support, and engineering language before editing deeper docs |
+
+## Before You Read
+
+If the product terms are unfamiliar, skim [Concepts and Glossary](./concepts.mdx) first. Redbit coordinates workflows around configured providers; it does not guarantee provider quota, latency, uptime, policy, or output quality.
+
+## Recommended Reading Path
+
+![Reading map showing the recommended product documentation path from overview through evaluation, quickstart, first project, decision matrix, workflows, modules, provider configuration, security, Agent, Seedance, troubleshooting, and FAQ.](../../assets/diagrams/redbit-reading-map.svg)
+
+Read these pages in order when onboarding a user, customer, or teammate:
+
+1. [Studio Workspace Overview](./overview.mdx)
+2. [Evaluation Guide](./evaluation-guide.mdx)
+3. [Quickstart](../quickstart.mdx)
+4. [First Project Walkthrough](./first-project-walkthrough.mdx)
+5. [Decision Matrix](./decision-matrix.mdx)
+6. [Core Workflows](./workflows.mdx)
+7. [Feature Modules](./modules.mdx)
+8. [Models and Provider Configuration](./model-providers.mdx)
+9. [Security and Credentials](./security-credentials.mdx)
+10. [Agent Workflows](./agent-workflows.mdx)
+11. [Seedance Video Workflows](./seedance-video.mdx)
+12. [Troubleshooting Playbook](./troubleshooting.mdx)
+
+## Product Positioning
+
+Redbit is not only a chat interface and not only a model API wrapper. It is a workflow layer that keeps creative work visible and reusable:
+
+- prompts and generated media live in cards instead of disappearing into one transcript;
+- assets can move between cards, Asset Dock, SmartPicker, and Workshop projects;
+- model routing is configured through Settings and the model registry instead of hard-coded per button;
+- the Agent can inspect workspace state and call bounded tools for cards, assets, Workshop projects, settings, search, and local integrations.
+
+## Main Areas
+
+<Steps>
+  <Step title="Canvas">
+    The `/dashboard` workspace shows cards for `image`, `video`, `speech`, `describe`, and `audio` tasks. A card keeps its own prompt, model, variant, ratio, references, generation status, and results.
+  </Step>
+
+  <Step title="Asset Dock">
+    Asset Dock stores reusable image, video, audio, and text assets. Items can be pinned, searched, compared, and selected through SmartPicker as references for later work.
+  </Step>
+
+  <Step title="Creative Workshop">
+    `/workshop` manages project-level creative production: script, storyboard scenes, image generation, video generation, voiceover, music, rhythm video, consistency references, and export packages.
+  </Step>
+
+  <Step title="Settings and model registry">
+    Settings control model defaults, provider credentials, relay behavior, custom model endpoints, Agent runtime mode, and capability testing. The catalog defines supported model families, variants, ratios, and input requirements.
+  </Step>
+
+  <Step title="Agent panel">
+    The Agent reads a structured workspace snapshot and calls registered tools. Destructive operations and external effects are bounded by tool metadata, result normalization, and explicit target checks.
+  </Step>
+</Steps>
+
+## Module Summary
+
+| Module | Current role | Key product value |
+| --- | --- | --- |
+| Cards | Independent generation and review units | Compare, duplicate, group, batch-generate, set references, and preserve results by task |
+| Series image templates | Image-card series planning for 3, 4, 6, or 8 slots | Turn one prompt into ecommerce, social, explainer, character, poster, brand, or storyboard image sets |
+| Workshop | Project workspace for staged creative production | Move from script to storyboard to scene media and exportable video packages |
+| Asset Dock | Local reusable asset library | Keep generated and uploaded assets available for later references |
+| SmartPicker | Context-aware asset selector | Pick global or project assets for cards, Workshop scenes, Seedance references, and Agent-assisted flows |
+| Model Registry | Catalog-backed model metadata | Centralize model families, variants, ratios, input requirements, relay mappings, and provider payloads |
+| Agent Runtime | Guarded tool execution loop | Convert natural-language requests into observable, bounded workspace actions |
+| Local Core | Optional local companion service | Provides selected desktop, media, storage, MCP, automation, and plugin capabilities when paired |
+
+## Product Boundaries
+
+Redbit uses local browser storage heavily, but some workflows necessarily call external model providers, relay services, local-core endpoints, or user-approved integrations. Treat provider configuration as BYOK: Redbit coordinates requests, but model cost, model availability, provider policy, and output quality depend on the configured provider.
+
+Capabilities that are present in architecture notes but feature-flagged, optional, or dependent on local services are described as such in these docs. Claims that cannot be verified in the repository should be treated as planned rather than current product behavior.
+
+## Next Step
+
+Continue to [Evaluation Guide](./evaluation-guide.mdx) if you are deciding whether Redbit fits a team workflow, or [Quickstart](../quickstart.mdx) if you are ready to configure a minimal provider route and run the first card safely. Use [Security and Credentials](./security-credentials.mdx) before sending confidential media.

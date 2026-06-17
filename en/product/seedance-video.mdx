@@ -1,0 +1,86 @@
+---
+title: "Seedance Video Workflows"
+description: "How Redbit exposes Seedance 2.0 text-to-video, image-to-video, first/last-frame, and multi-reference video workflows."
+---
+
+# Seedance Video Workflows
+
+Seedance is a video model family in Redbit's current registry. In the dashboard, Seedance-specific controls appear when the active card is a `video` card and the selected model is `seedance` or a `doubao-seedance-2.0*` variant.
+
+![Seedance workflow diagram showing prompt input, four reference modes, validation, and provider output.](../../assets/diagrams/seedance-reference-modes.svg)
+
+## Who Should Read This
+
+Read this page when a workflow needs Seedance-specific reference roles, when video generation is slow or failing, or when you need to decide whether a reference image, first/last-frame setup, or multi-reference setup is appropriate.
+
+## Before You Read
+
+Confirm provider access in [Models and Provider Configuration](./model-providers.mdx). Seedance requests may go through direct provider settings or a compatible relay, and generation can be slower than image generation because the provider may queue, poll, and post-process video jobs.
+
+## Current Variants and Output Settings
+
+| Setting | Current values in the codebase |
+| --- | --- |
+| Model ID | `seedance` |
+| Variants | `doubao-seedance-2.0`, `doubao-seedance-2.0-fast` |
+| Ratios | `9:16`, `16:9`, `1:1`, `4:3`, `3:4`, `21:9` |
+| Durations | `4`, `5`, `6`, `8`, `10`, `15` seconds |
+| Resolutions | `480p`, `720p`, `1080p` |
+| Default output options | `720p`, audio enabled, web search disabled unless changed in the card settings |
+| Reference media roles | first frame, last frame, reference image, reference video, reference audio |
+
+## Modes
+
+| Mode | Required input | Use for |
+| --- | --- | --- |
+| Text to Video | Prompt only | Prompt-led motion ideas with no source frame |
+| Image to Video | A first-frame image | Animate from a selected starting image |
+| First/Last Frame | First-frame and last-frame images | Guide a transition between two fixed visual anchors |
+| Multi-Reference | At least one image, video, or audio reference | Let multiple media references influence the video task |
+
+Use first-frame or first/last-frame modes when the opening or ending visual must be controlled. Use multi-reference when the task needs broader guidance from image, video, or audio examples, and accept that the provider may weigh references differently from prompt text.
+
+## Reference Rules
+
+Seedance reference handling is stricter than generic video reference handling:
+
+- text-to-video does not use references;
+- image-to-video requires a first-frame image;
+- first/last-frame mode requires both a first-frame and a last-frame image;
+- multi-reference mode requires at least one reference asset;
+- frame mode references cannot be mixed with free multimodal references in one task;
+- reference tokens such as `@image1` or `@video1` can be inserted into prompts after references are collected.
+
+## Recommended Workflow
+
+<Steps>
+  <Step title="Configure provider access">
+    In Settings, configure Seedance direct credentials or a compatible relay. Seedance's registry entry currently lists `wavespeed` and `other` as relay options.
+  </Step>
+  <Step title="Create a video card">
+    Open the `Video` tab, select Seedance, and confirm the variant, ratio, duration, resolution, and audio setting.
+  </Step>
+  <Step title="Choose the mode">
+    Use text-to-video for prompt-only work, image-to-video for a start frame, first/last-frame for a transition, or multi-reference for mixed media guidance.
+  </Step>
+  <Step title="Attach references">
+    Upload assets or select them from Asset Dock/SmartPicker. Check that the assigned roles match the selected mode.
+  </Step>
+  <Step title="Generate and review">
+    Video generation may take longer than image generation because providers often queue, poll, and post-process results.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+| Symptom | Likely cause | What to check |
+| --- | --- | --- |
+| Missing first-frame error | Image-to-video mode has no first-frame reference | Attach an image and keep its role as `first_frame` |
+| Missing last-frame error | First/last mode has only one endpoint frame | Attach both first and last frame images |
+| Reference mix error | Frame references and free references are mixed | Use either first/last frame roles or multi-reference roles, not both |
+| Provider error | Credentials, relay capability, endpoint, quota, or model variant mismatch | Re-check Settings and provider console |
+| Slow generation | Provider queue or long video settings | Try shorter duration, lower resolution, or fast variant where appropriate |
+
+## Next Step
+
+Use [Operational Checklists](./checklists.mdx) for video failure triage, or [FAQ and Troubleshooting](../faq.mdx) for customer-facing explanations of slow video, model differences, and provider failures.

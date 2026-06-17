@@ -1,0 +1,91 @@
+---
+title: "第一个项目演练"
+description: "从输入 brief 到 Cards、Series、Workshop、Agent 协作、供应商配置、素材复用和导出的端到端演练。"
+---
+
+# 第一个项目演练
+
+本演练使用一个真实项目形态：小型商品发布包，包含商品图、短视频选项和交接物。你可以用同一顺序改造社媒帖子、讲解内容、分镜测试或 Agent 协作研究任务。
+
+## 谁应该阅读本文
+
+| 读者 | 适合在什么时候使用 |
+| --- | --- |
+| 新用户 | 想跑完整第一遍，而不是只看功能说明 |
+| 团队 lead | 需要一条能展示配置、生成、复用和交接的演示路径 |
+| 执行者 | 需要判断什么时候留在 Cards、什么时候进入 Workshop、什么时候请求 Agent 协助 |
+
+## 开始前
+
+准备一个小 brief、一份或多份已批准源素材，以及支持目标媒体类型的供应商账号或中继。凭证只放在 Settings，不放进 prompt、Cards、Workshop 脚本或 Agent 聊天。
+
+## 演练时间线
+
+下面的 SVG 是第一个项目时间线。它用于 onboarding 时说明实际工作顺序：brief、供应商、卡片基线、模块选择、生成、复用、导出和交接。
+
+![Redbit 第一个项目时间线：从 brief 输入到供应商配置、Cards、Series、Workshop、Agent 协作、导出和交接。](../../assets/diagrams/redbit-first-project-timeline.svg)
+
+## 项目 Brief
+
+| 字段 | 示例 |
+| --- | --- |
+| 目标 | 产出一组用于评审的紧凑商品发布素材 |
+| 输入 | 商品照片、简短定位说明、目标比例、可选品牌风格说明 |
+| 输出 | 4 到 6 张候选图；如果视频供应商路线支持，再产出 1 到 2 个短视频选项；同时保留可复用参考 |
+| 评审规则 | 发布前由人工评审选择最终输出 |
+| 边界 | Redbit 协调工作区；供应商额度、政策、延迟和输出质量仍由供应商决定 |
+
+## 端到端步骤
+
+<Steps>
+  <Step title="创建输入记录">
+    从 `/dashboard` 开始。把 brief 作为 Image Card 的 prompt，或作为文本素材放入 Asset Dock。只上传已批准的商品参考。
+  </Step>
+  <Step title="配置供应商路线">
+    打开 Settings，只配置第一轮需要的最小图像供应商或中继。如果项目包含视频，发送源素材前也要确认视频模型家族和变体。
+  </Step>
+  <Step title="先跑一张基线 Card">
+    创建一张 Image Card，选择模型、比例和参考素材，然后生成。先检查卡片状态、结果、错误状态和下载行为，再扩大流程。
+  </Step>
+  <Step title="选择工作模式">
+    独立选项用 Cards；结构化图组用 Series；脚本和场景项目用 Workshop；明确多步工作区动作请 Agent；有参考角色的视频任务用 Seedance；供应商能力问题回到 Model Registry/Settings。
+  </Step>
+  <Step title="扩展到 Series 或 Workshop">
+    商品图组可以把 Image Card 切到 Series，并选择 `ecommerce`、`social` 或 `brand`。多场景视频则创建 Workshop 项目，补充脚本、场景、参考素材和输出设置。
+  </Step>
+  <Step title="只让 Agent 做可审查的多步工作">
+    当目标明确时，可以请 Agent 创建卡片、分组选项、打开 SmartPicker 或准备 Workshop 项目。凭证、模糊删除、计费和真实账号动作仍保持手动。
+  </Step>
+  <Step title="复用选中的输出">
+    把有价值结果置顶到 Asset Dock。通过 SmartPicker 把选中图片用于后续 Cards、Workshop 场景，或 Seedance first-frame、first/last-frame 模式。
+  </Step>
+  <Step title="导出并交接">
+    下载卡片输出，或在已配置情况下导出 Workshop 产物。记录所选模型路线、源素材、已知失败和评审决定，方便下一位成员接手。
+  </Step>
+</Steps>
+
+## 演练中的决策点
+
+| 如果出现这种情况 | 选择 |
+| --- | --- |
+| 一个 prompt 只需要一两个输出 | 手动 Cards |
+| 一个 prompt 应该变成结构化图组 | Image Cards 的 Series 模式 |
+| 工作包含脚本、场景、旁白、音乐或导出包 | Workshop |
+| 用户请求多个明确工作区动作 | Agent runtime |
+| 视频需要首帧、首尾帧或多参考角色 | Seedance 工作流 |
+| 模型缺失、失败或被中继过滤 | Model Registry 和 Settings 检查 |
+
+## 验收检查清单
+
+| 检查 | 何时算完成 |
+| --- | --- |
+| 供应商路线已明确 | 团队能说清直接供应商、中继、自定义中继或 Local Core 用法 |
+| 基线生成已跑过 | 至少一张 Card 有可见结果或可操作错误 |
+| 已证明可复用 | 至少一个输出被置顶或作为参考再次选择 |
+| 项目结构清楚 | Cards、Series 槽位或 Workshop 场景的命名足够交接 |
+| 导出路径已测试 | 存在下载结果、Workshop 导出或文档化交接物 |
+| 排障记录已保留 | 供应商、模型、Agent、i18n 或视频问题都有恢复说明 |
+
+## 下一步
+
+处理真实客户素材前先读 [安全与凭据](./security-credentials.mdx)，第一次跑供应商任务时同时打开 [排障手册](./troubleshooting.mdx)。

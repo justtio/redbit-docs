@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Redbit guarded agent loop</title>
+  <desc id="desc">A flow diagram of the Redbit agent runtime from user request through intent routing, model runtime selection, tool execution, guards, and UI updates.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .node { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .read { fill: #ecfdf5; stroke: #10b981; }
+      .write { fill: #fff7ed; stroke: #fb923c; }
+      .guard { fill: #fef2f2; stroke: #ef4444; }
+      .model { fill: #eff6ff; stroke: #3b82f6; }
+      .title { font: 700 28px Inter, Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Inter, Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Inter, Arial, sans-serif; fill: #475569; }
+      .tiny { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; text-transform: uppercase; }
+      .line { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="72" y="70">Guarded Agent Runtime</text>
+  <text class="small" x="72" y="100">The reliable default path is a bounded tool loop with explicit state, tool metadata, and result normalization.</text>
+
+  <rect class="node" x="86" y="188" width="176" height="100" rx="16"/>
+  <text class="label" x="116" y="228">User request</text>
+  <text class="small" x="116" y="254">Chat, shortcut,</text>
+  <text class="small" x="116" y="276">or macro</text>
+
+  <rect class="read" x="326" y="168" width="208" height="140" rx="16"/>
+  <text class="label" x="356" y="208">Preflight</text>
+  <text class="small" x="356" y="236">Intent frame</text>
+  <text class="small" x="356" y="258">Shortcuts</text>
+  <text class="small" x="356" y="280">Clarification gates</text>
+
+  <rect class="model" x="602" y="168" width="208" height="140" rx="16"/>
+  <text class="label" x="632" y="208">Model runtime</text>
+  <text class="small" x="632" y="236">Catalog or probed</text>
+  <text class="small" x="632" y="258">capabilities</text>
+  <text class="small" x="632" y="280">direct / relay / custom</text>
+
+  <rect class="write" x="878" y="168" width="208" height="140" rx="16"/>
+  <text class="label" x="908" y="208">Tool pipeline</text>
+  <text class="small" x="908" y="236">Normalize calls</text>
+  <text class="small" x="908" y="258">Execute tools</text>
+  <text class="small" x="908" y="280">Normalize results</text>
+
+  <rect class="guard" x="602" y="408" width="208" height="128" rx="16"/>
+  <text class="label" x="632" y="448">Guards</text>
+  <text class="small" x="632" y="476">Risk metadata</text>
+  <text class="small" x="632" y="498">Drift checks</text>
+  <text class="small" x="632" y="520">Retry / stop policy</text>
+
+  <rect class="node" x="326" y="422" width="208" height="100" rx="16"/>
+  <text class="label" x="356" y="462">UI state</text>
+  <text class="small" x="356" y="490">Cards, assets,</text>
+  <text class="small" x="356" y="512">workshop, settings</text>
+
+  <path class="line" d="M262 238 H326"/>
+  <path class="line" d="M534 238 H602"/>
+  <path class="line" d="M810 238 H878"/>
+  <path class="line" d="M982 308 C982 392 878 472 810 472"/>
+  <path class="line" d="M602 472 H534"/>
+  <path class="dash" d="M706 408 C690 350 714 323 706 308"/>
+  <path class="dash" d="M430 422 C338 384 210 374 174 288"/>
+
+  <rect class="node" x="98" y="598" width="1084" height="58" rx="16"/>
+  <text class="tiny" x="128" y="624">Boundary</text>
+  <text class="small" x="128" y="648">Destructive tools require explicit targets or confirmation; external effects are tracked; each tool result must normalize to an object with a success flag.</text>
+</svg>

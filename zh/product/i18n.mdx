@@ -1,0 +1,39 @@
+---
+title: "多语言支持 (i18n)"
+description: "Redbit 如何通过 react-intl、t(...) 和 1:1 语言包结构保持中英文 UI 文案一致。"
+---
+
+# 多语言支持
+
+Redbit 将面向用户的 UI 文案维护在中英文语言包中。新增产品标签、Agent 反馈、Workshop 文案和 Settings 文案时，应使用项目 i18n 入口，而不是在组件里写内联语言分支。
+
+## 谁应该阅读本文
+
+编辑 UI 文案、Agent 消息、Settings 标签、Workshop 标签，或需要在文档中指向翻译 key 前，先读这一页。
+
+## 字典结构
+
+UI 词典位于 `src/language/`，`zh` 和 `en` 保持平行结构：
+```text
+src/language/
+  ├── zh/
+  │   ├── basic.ts
+  │   ├── workshop.ts
+  │   ├── agent.ts
+  └── en/
+      ├── basic.ts
+      ├── workshop.ts
+      ├── agent.ts
+```
+
+## 编辑规则
+
+1. 新增 key 时，`en` 和 `zh` 必须同时补齐。
+2. 新增前先核对相邻 key 的真实结构，不要随意改变层级。
+3. React 组件使用 `react-intl` 或项目已有 `t(...)` 入口。
+4. 非 React 模块使用 `t(...)`，必要时通过 locale store 读取语言偏好。
+5. 不要使用 `isEn ? "..." : "..."` 或 `appLang === "en" ? "..." : "..."` 这类内联语言分支。
+
+## 下一步
+
+产品模块说明看 [功能模块](./modules.mdx)；修改应用代码前，请同时遵守仓库 `AGENTS.md` 中的 i18n 规则。

@@ -1,0 +1,40 @@
+---
+title: "Reference Intake"
+description: "How Redbit accepts local assets, previews them in the browser, and routes them into Cards, Asset Dock, Workshop, and Agent workflows."
+---
+
+# Reference Intake
+
+Redbit's reference intake surface is designed to keep source material close to the generation workflow. Users can bring in common working assets, preview them locally where browser APIs allow it, then decide whether the next step needs provider upload, Local Core processing, or only a local workspace reference.
+
+## Who Should Read This
+
+Read this page when you need to explain how uploaded or dragged material becomes a reusable Reference, and where local preview ends before a provider or Local Core route begins.
+
+## Intake Behavior
+
+<AccordionGroup>
+  <Accordion title="Common working assets" icon="compress">
+    Images, videos, audio, text snippets, and document-like files can enter the workspace through the intake surface or related pickers. The exact downstream use depends on the selected workflow and provider input requirements.
+  </Accordion>
+  <Accordion title="Local preview anchors" icon="bolt">
+    Browser file APIs and object URLs can preview local assets before a workflow decides whether the asset must be uploaded to a provider, sent through Local Core, or kept as local workspace context.
+  </Accordion>
+</AccordionGroup>
+
+## Where References Can Go
+
+| Destination | Typical use | Boundary |
+| --- | --- | --- |
+| Cards | Use a prior image, video, audio, or text input for a new generation task | Accepted media types depend on the selected model |
+| Asset Dock | Keep an uploaded or generated item available for later reuse | Pinned items are safer for reuse than temporary recent items |
+| Workshop | Attach scene images, consistency references, voiceover, music, or project media | Use Workshop when the material belongs to a multi-scene project |
+| Agent runtime | Let the Agent open SmartPicker or call asset tools with explicit constraints | The Agent should not guess sensitive source material; users should choose exact assets |
+
+## Security Boundary
+
+Local preview does not mean the asset never leaves the device. The asset remains local only until a workflow sends it to a configured provider, relay, Local Core endpoint, or external integration. Check the selected route before using confidential media.
+
+## Next Step
+
+Use [Cards](./cards.mdx) for card-level reference behavior, or [Seedance Video Workflows](./seedance-video.mdx) for first-frame, last-frame, and multi-reference video rules.

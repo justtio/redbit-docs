@@ -1,0 +1,53 @@
+---
+title: "Cards"
+description: "Cards are independent units for generation, review, series planning, references, and reuse."
+---
+
+# Cards
+
+Cards are Redbit's primary workspace unit. A card can represent an image, video, speech, audio, or describe task. Each card keeps its own prompt, model settings, status, result list, reference inputs, and recoverable task metadata.
+
+## Who Should Read This
+
+Read this when you need to understand what stays attached to a generation task, how results can be reused, and when Series or References change card behavior.
+
+## Common actions
+
+<Steps>
+  <Step title="Create">
+    Add one or more cards with a prompt and optional model settings.
+  </Step>
+  <Step title="Generate">
+    Run generation for pending or selected cards.
+  </Step>
+  <Step title="Reference">
+    Use an Asset Dock item or another card result as input for a new card.
+  </Step>
+  <Step title="Organize">
+    Select, group, reorder, delete, favorite, download, or pin outputs as your workspace grows.
+  </Step>
+</Steps>
+
+## Card Types
+
+| Type | Typical use |
+| --- | --- |
+| Describe | Analyze image, audio, or video input into reusable prompt text |
+| Image | Generate single images or planned image series |
+| Video | Generate video from prompt, images, frames, motion references, or model-specific inputs |
+| Audio | Generate speech/audio/music outputs depending on selected model |
+| Speech | Create digital-human/avatar style speech-video outputs |
+
+## Series Mode for Image Cards
+
+Image cards can run in `single` or `series` mode. Series mode plans multiple slots from one base prompt, then tracks each slot's planned brief, editable prompt, status, selected output, and result.
+
+Current series counts are `3`, `4`, `6`, and `8`. Current templates are `auto`, `ecommerce`, `social`, `explainer`, `character`, `poster`, `brand`, and `storyboard`.
+
+## References
+
+Cards can use references from uploaded files, previous card results, Asset Dock, or SmartPicker. Reference behavior depends on the selected model. For example, Seedance uses explicit reference roles, while other video models may require an image, motion video, or audio source depending on registry input requirements.
+
+## Next Step
+
+Use [Core Workflows](./workflows.mdx) to see how Cards move into Asset Dock, Workshop, and Agent-assisted workflows.

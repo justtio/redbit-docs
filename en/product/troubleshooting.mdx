@@ -1,0 +1,54 @@
+---
+title: "Troubleshooting Playbook"
+description: "A practical troubleshooting table for failed generation, slow video, inconsistent models, Agent failures, i18n issues, and provider errors."
+---
+
+# Troubleshooting Playbook
+
+Use this page when a workflow fails after the user has chosen a Redbit surface and provider route. Start with the visible symptom, then check route, model, input, storage, and Agent/runtime boundaries.
+
+## Who Should Read This
+
+| Reader | Use this page when |
+| --- | --- |
+| First-time user | A generation, video, provider, or Agent task failed |
+| Support or success team | You need a structured recovery table for a customer call |
+| Technical operator | You need to separate Redbit workflow state from provider, relay, browser, and Local Core issues |
+
+## Before You Troubleshoot
+
+Capture the card or Agent error, selected model family and variant, direct provider or relay route, input references, browser console error if available, and whether Local Core was paired. Do not paste real API keys into support notes.
+
+## Troubleshooting Table
+
+| Symptom | Likely cause | Checks | Recovery |
+| --- | --- | --- | --- |
+| Generation fails immediately | Missing key, wrong endpoint, unsupported model variant, invalid input, or browser network/CORS issue | Settings provider route, API key type, base URL, selected variant, card input requirements, provider console | Re-enter Settings, choose a supported model, remove invalid references, retry one card before batch generation |
+| Provider returns explicit error | Provider quota, billing, region, safety rejection, relay mapping, or payload mismatch | Provider console, response message, relay capability warning, selected media type, payload requirements | Fix provider account issue, reduce input complexity, switch route, or choose a supported relay model |
+| Video is slow or appears stalled | Provider queue, long duration, high resolution, first/last-frame processing, or polling delay | Duration, resolution, variant, provider status, whether the card has a task ID or pending status | Wait for provider polling, try shorter duration, lower resolution, fast variant, or another route with lower queue pressure |
+| Seedance reference error | Required first frame, last frame, or multi-reference input is missing or mixed incorrectly | Selected Seedance mode, reference roles, prompt reference tokens, card validation message | Use text-to-video with no references, image-to-video with first frame, first/last with both endpoint frames, or multi-reference with at least one free reference |
+| Model output is inconsistent | Different model family, variant, safety filter, reference strength, prompt interpretation, or provider post-processing | Model family, variant, ratio, seed or settings if available, source references, prompt changes | Compare like-for-like settings, pin preferred outputs, tighten prompt/reference rules, and do not expect providers to match exactly |
+| Model disappears after relay mode | Relay capability filter does not include the family or variant | Relay provider, custom relay model list, media type, Model Registry support | Switch to direct provider, choose a relay-supported model, or add verified custom relay IDs |
+| Agent says it finished but no media exists | Tool returned text only, generation failed inside a tool, target card was missing, or runtime lacks tool capability | Agent tool transcript, normalized `{ success: boolean }` result, created Cards, selected tab, capability profile | Ask for explicit card creation/generation, run capability test, check card errors, or do the generation manually |
+| Agent cannot complete task | Request is ambiguous, destructive, external-effectful, or unsupported by current tools/runtime | Original request, target IDs, tool availability, confirmation requirements, Agent runtime profile | Narrow the target, confirm risky action, choose a capable runtime, or split into manual steps |
+| i18n or language display looks wrong | Locale store mismatch, missing translation key, incorrect key path, or stale browser state | Current language setting, visible key text, related sibling translation keys, browser reload | Switch language and reload, report exact key/path, avoid inline language branching in future UI edits |
+| Assets disappear or cannot be selected | Unpinned recent asset cleanup, browser storage cleared, quota pressure, or project/global picker mismatch | Asset Dock pinned state, SmartPicker mode, browser site data, project context | Re-import source asset, pin important outputs, switch picker scope, export important projects |
+| Local Core feature does not respond | Local engine not running, pairing failed, blocked port, wrong binary, or feature not enabled | Local Core process, pairing code, local endpoint, browser/network errors | Restart trusted local engine, pair again, verify feature need, or use browser-only workflow |
+| Export is missing expected files | Workshop stage incomplete, output not generated, export mode mismatch, or unsupported package path | Workshop project scenes, selected media, export mode, available generated assets | Generate missing stage, select final assets, retry export, or hand off downloaded Card outputs |
+
+## Escalation Packet
+
+When support needs to investigate, include:
+
+| Field | Include |
+| --- | --- |
+| Workflow surface | Cards, Series, Workshop, Agent, Seedance, Model Registry/Settings |
+| Route | Direct provider, relay provider, custom relay, Local Core, or browser-only |
+| Model selection | Family, variant, ratio, duration, resolution, and Agent runtime profile if relevant |
+| Input shape | Prompt, file types, reference roles, and whether references came from upload, Asset Dock, or SmartPicker |
+| Error evidence | Card error text, provider response summary, Agent tool result, browser console summary |
+| Recovery already tried | Settings update, retry, route switch, input simplification, Local Core restart, language reload |
+
+## Next Step
+
+For security-sensitive issues, use [Security and Credentials](./security-credentials.mdx). For Seedance-specific reference rules, use [Seedance Video Workflows](./seedance-video.mdx).

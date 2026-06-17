@@ -1,0 +1,65 @@
+---
+title: "FAQ and Troubleshooting"
+description: "Practical answers about credentials, local storage, model differences, generation failures, video latency, Agent boundaries, and Local Core."
+---
+
+# FAQ and Troubleshooting
+
+For table-driven recovery steps, use [Troubleshooting Playbook](./product/troubleshooting.mdx). For provider keys and route boundaries, use [Security and Credentials](./product/security-credentials.mdx).
+
+<AccordionGroup>
+  <Accordion title="What does BYOK mean in Redbit?" icon="key">
+    BYOK means you configure your own compatible provider or relay credentials in Settings. Redbit supplies the workspace, routing, cards, Workshop, Asset Dock, and Agent tooling. Model usage, provider quota, regional access, and billing remain controlled by the provider account you use.
+  </Accordion>
+  <Accordion title="Where are API keys stored?" icon="shield-check">
+    Settings persists sensitive fields in browser storage and encrypts API keys, access keys, secret keys, and tokens before IndexedDB persistence when the browser crypto path is available. If persistence fails, Redbit falls back to a redacted snapshot. Do not paste keys into prompts, cards, Workshop scripts, or Agent chat.
+  </Accordion>
+  <Accordion title="Does Redbit include model credits?" icon="credit-card">
+    The product documentation should not assume bundled model credits. Provider usage is charged according to your provider or relay account unless a separate commercial plan explicitly says otherwise.
+  </Accordion>
+  <Accordion title="Which models are currently represented in the registry?" icon="microchip">
+    The current registry includes image groups such as NanoBanana, SeeDream, Flux, and GPT Image; video groups such as Veo, Wan 2.2 Animate, Jimeng Video, Seedance 2.0, and Kling Motion; speech/avatar groups such as InfiniteTalk, Pixverse, Jimeng, and Kling; audio groups such as Minimax and Suno; and describe/Agent LLM options from Gemini and GPT-family models. Visibility depends on Settings and relay capability filters.
+  </Accordion>
+  <Accordion title="Why does the same prompt look different across models?" icon="shuffle">
+    Model families differ in training data, prompt parsing, reference handling, safety filters, aspect-ratio support, output format, and provider post-processing. Redbit keeps the prompt and settings inspectable, but it does not force different providers to produce identical media.
+  </Accordion>
+  <Accordion title="When should I use Series?" icon="copy">
+    Use Series when one image prompt should become a planned set: product angles, social frames, explainers, character sheets, posters, brand campaign frames, or storyboard panels. Use single-card mode when you only need one result or when each image needs a substantially different prompt.
+  </Accordion>
+  <Accordion title="When should I use Workshop?" icon="clapperboard">
+    Use Workshop when the work has project structure: script, scenes, consistency references, scene images, video clips, voiceover, music, rhythm video, or exports. Keep work on Cards when you are comparing isolated generations or building reusable references.
+  </Accordion>
+  <Accordion title="When should I use the Agent?" icon="bot">
+    Use the Agent when the task spans multiple explicit workspace actions, such as creating cards, grouping results, opening SmartPicker, or preparing a Workshop project. Stay manual for credentials, billing settings, ambiguous deletion, external posting, or visual judgement on a specific frame.
+  </Accordion>
+  <Accordion title="Why did a generation fail?" icon="circle-alert">
+    Common causes are missing API keys, wrong base URL, provider quota, unsupported relay/model combination, invalid media input, CORS/network failure, provider safety rejection, or a model-specific requirement such as a missing first-frame image. Check the card error, Settings, selected variant, relay capability warning, and provider console.
+  </Accordion>
+  <Accordion title="Why are video tasks slower than image tasks?" icon="timer">
+    Video providers commonly queue jobs, poll task status, and post-process output. Longer duration, higher resolution, frame references, and provider load can increase latency. Try shorter duration, lower resolution, or a fast variant if the selected provider supports it.
+  </Accordion>
+  <Accordion title="What is Local Core?" icon="download">
+    Local Core is an optional Rust Axum local daemon. It extends the browser with local HTTP/SSE/WebSocket endpoints for selected storage, media parsing, FFmpeg, MCP gateway, automation, browser-extension coordination, plugin, and local CMO data workflows. Pair only a local engine you started and trust.
+  </Accordion>
+  <Accordion title="Can the Agent perform destructive actions?" icon="shield-alert">
+    Some registered tools can mutate workspace state, such as deleting cards or Workshop projects. The runtime marks destructive tools separately, requires clear targets or confirmation policy, and normalizes every tool result before continuing. Review Agent actions carefully when real accounts, external posting, or deletion is involved.
+  </Accordion>
+  <Accordion title="Why does a model disappear when relay mode is enabled?" icon="route">
+    Settings filters visible models by relay capability. A relay may support image models but not video, or may support only specific model families. Use direct provider mode, choose another relay, or configure custom relay model lists only when you know the endpoint supports those IDs.
+  </Accordion>
+  <Accordion title="Where are assets and projects stored?" icon="hard-drive">
+    Cards, settings, Asset Dock metadata, media blobs, and Workshop projects use browser storage paths such as IndexedDB, OPFS when available, or a Local Core storage bridge when paired. Browser profile deletion, site data clearing, or quota pressure can remove local data unless assets are exported or otherwise backed up.
+  </Accordion>
+  <Accordion title="What should I do before using confidential material?" icon="lock">
+    Verify the selected provider route, relay, Local Core pairing, and browser storage policy. Use a provider account whose terms allow the material you plan to send. Do not assume every provider or relay has the same privacy, retention, or safety behavior.
+  </Accordion>
+  <Accordion title="How do I protect API keys?" icon="key-round">
+    Keep keys in Settings, use the minimum provider scope needed for the task, avoid screenshots or screen shares that reveal key fields, and rotate a key in the provider console if it was pasted into chat, a card, a script, a ticket, or an external tool. Redbit encrypts sensitive Settings fields when the browser crypto path is available and falls back to redacted snapshots on persistence failure.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Card title="Still stuck?" icon="message-circle" color="#3B82F6">
+  Capture the card error, selected model/variant, relay setting, and whether Local Core was paired before contacting support at [support@redbit.one](mailto:support@redbit.one).
+</Card>

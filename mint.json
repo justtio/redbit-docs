@@ -1,0 +1,201 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Redbit AI Studio",
+  "logo": {
+    "dark": "/logo.png",
+    "light": "/logo.png"
+  },
+  "favicon": "/logo.png",
+  "metadata": {
+    "og:title": "Redbit AI Studio — Creative Production Workspace",
+    "og:description": "Card-based creative workspace for image, video, audio, Workshop projects, Asset Dock reuse, BYOK model routing, and optional Local Core integrations.",
+    "og:image": "/logo.png",
+    "og:site_name": "Redbit AI Studio",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@RedbitAI"
+  },
+  "colors": {
+    "primary": "#F43F5E",
+    "light": "#FB7185",
+    "dark": "#E11D48",
+    "anchors": {
+      "from": "#F43F5E",
+      "to": "#FDA4AF"
+    }
+  },
+  "topbarCtaButton": {
+    "name": "Enter Studio",
+    "url": "https://redbit.one/#pricing"
+  },
+  "topbarLinks": [
+    {
+      "name": "Pricing",
+      "url": "https://redbit.one/#pricing"
+    }
+  ],
+  "tabs": [
+    {
+      "name": "English",
+      "url": "en"
+    },
+    {
+      "name": "中文 (简体)",
+      "url": "zh"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "en/introduction",
+        "en/product/evaluation-guide",
+        "en/quickstart",
+        "en/product/first-project-walkthrough",
+        "en/deployment"
+      ]
+    },
+    {
+      "group": "Pricing & Plans",
+      "pages": [
+        "en/pricing"
+      ]
+    },
+    {
+      "group": "Customer Success (ROI)",
+      "pages": [
+        "en/customers/case-studies"
+      ]
+    },
+    {
+      "group": "Business & Vision",
+      "pages": [
+        "en/business/vision",
+        "en/business/use-cases"
+      ]
+    },
+    {
+      "group": "Product Ecosystem",
+      "pages": [
+        "en/product/overview",
+        "en/product/evaluation-guide",
+        "en/quickstart",
+        "en/product/first-project-walkthrough",
+        "en/product/decision-matrix",
+        "en/product/concepts",
+        "en/product/workflows",
+        "en/product/modules",
+        "en/product/model-providers",
+        "en/product/security-credentials",
+        "en/product/agent-workflows",
+        "en/product/seedance-video",
+        "en/product/checklists",
+        "en/product/cards",
+        "en/product/referzone",
+        "en/product/i18n",
+        "en/product/troubleshooting",
+        "en/faq"
+      ]
+    },
+    {
+      "group": "Architecture & Core",
+      "pages": [
+        "en/architecture/agent-runtime",
+        "en/architecture/local-core"
+      ]
+    },
+    {
+      "group": "Developers & API",
+      "pages": [
+        "en/developers/mcp-gateway",
+        "en/developers/agent-tools"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "en/faq",
+        "en/changelog"
+      ]
+    },
+    {
+      "group": "快速起步 (Onboarding)",
+      "pages": [
+        "zh/introduction",
+        "zh/product/seedance-ecommerce-guide",
+        "zh/product/evaluation-guide",
+        "zh/quickstart",
+        "zh/product/first-project-walkthrough",
+        "zh/deployment"
+      ]
+    },
+    {
+      "group": "定价方案 (Pricing)",
+      "pages": [
+        "zh/pricing"
+      ]
+    },
+    {
+      "group": "商业引爆点 (Customer ROI)",
+      "pages": [
+        "zh/customers/case-studies"
+      ]
+    },
+    {
+      "group": "商业视野 (Business)",
+      "pages": [
+        "zh/business/vision",
+        "zh/business/use-cases"
+      ]
+    },
+    {
+      "group": "产品架构 (Product)",
+      "pages": [
+        "zh/product/overview",
+        "zh/product/evaluation-guide",
+        "zh/quickstart",
+        "zh/product/first-project-walkthrough",
+        "zh/product/decision-matrix",
+        "zh/product/concepts",
+        "zh/product/workflows",
+        "zh/product/modules",
+        "zh/product/model-providers",
+        "zh/product/security-credentials",
+        "zh/product/agent-workflows",
+        "zh/product/seedance-video",
+        "zh/product/checklists",
+        "zh/product/cards",
+        "zh/product/referzone",
+        "zh/product/i18n",
+        "zh/product/troubleshooting",
+        "zh/faq"
+      ]
+    },
+    {
+      "group": "深度原理 (Architecture)",
+      "pages": [
+        "zh/architecture/agent-runtime",
+        "zh/architecture/local-core"
+      ]
+    },
+    {
+      "group": "开放生态 (Developers)",
+      "pages": [
+        "zh/developers/mcp-gateway",
+        "zh/developers/agent-tools"
+      ]
+    },
+    {
+      "group": "资源中心 (Resources)",
+      "pages": [
+        "zh/faq",
+        "zh/changelog"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/justtio/redbit",
+    "x": "https://x.com/Redbiters",
+    "linkedin": "https://linkedin.com/company/redbit-ai",
+    "discord": "https://discord.gg/NkSfPKke86"
+  }
+}

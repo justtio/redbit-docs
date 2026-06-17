@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Redbit creative workflow</title>
+  <desc id="desc">A user workflow from idea and source assets through cards, workshop, agent collaboration, and export or reuse.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #fcfcfd; }
+      .lane { fill: #ffffff; stroke: #d7dee8; stroke-width: 1.5; }
+      .step { stroke-width: 1.5; }
+      .s1 { fill: #ecfdf5; stroke: #10b981; }
+      .s2 { fill: #eff6ff; stroke: #3b82f6; }
+      .s3 { fill: #fff7ed; stroke: #fb923c; }
+      .s4 { fill: #fdf2f8; stroke: #f472b6; }
+      .s5 { fill: #f5f3ff; stroke: #8b5cf6; }
+      .title { font: 700 28px Inter, Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Inter, Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Inter, Arial, sans-serif; fill: #475569; }
+      .tiny { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; text-transform: uppercase; }
+      .line { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .softline { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="72" y="70">From Idea to Reusable Production Asset</text>
+  <rect class="lane" x="64" y="118" width="1152" height="430" rx="24"/>
+  <text class="tiny" x="96" y="156">Primary creative path</text>
+
+  <rect class="step s1" x="92" y="198" width="176" height="126" rx="18"/>
+  <text class="label" x="120" y="238">1. Intake</text>
+  <text class="small" x="120" y="270">Prompt, brief,</text>
+  <text class="small" x="120" y="292">image, video,</text>
+  <text class="small" x="120" y="314">audio, text</text>
+
+  <rect class="step s2" x="318" y="198" width="176" height="126" rx="18"/>
+  <text class="label" x="346" y="238">2. Create Cards</text>
+  <text class="small" x="346" y="270">Choose mode,</text>
+  <text class="small" x="346" y="292">model, ratio,</text>
+  <text class="small" x="346" y="314">references</text>
+
+  <rect class="step s3" x="544" y="198" width="176" height="126" rx="18"/>
+  <text class="label" x="572" y="238">3. Generate</text>
+  <text class="small" x="572" y="270">Run one card,</text>
+  <text class="small" x="572" y="292">batch, group,</text>
+  <text class="small" x="572" y="314">or series</text>
+
+  <rect class="step s4" x="770" y="198" width="176" height="126" rx="18"/>
+  <text class="label" x="798" y="238">4. Review</text>
+  <text class="small" x="798" y="270">Compare, pin,</text>
+  <text class="small" x="798" y="292">favorite, reuse,</text>
+  <text class="small" x="798" y="314">regenerate</text>
+
+  <rect class="step s5" x="996" y="198" width="176" height="126" rx="18"/>
+  <text class="label" x="1024" y="238">5. Deliver</text>
+  <text class="small" x="1024" y="270">Download, export,</text>
+  <text class="small" x="1024" y="292">archive, or feed</text>
+  <text class="small" x="1024" y="314">next workflow</text>
+
+  <path class="line" d="M268 261 H318"/>
+  <path class="line" d="M494 261 H544"/>
+  <path class="line" d="M720 261 H770"/>
+  <path class="line" d="M946 261 H996"/>
+
+  <rect class="step s2" x="302" y="394" width="260" height="82" rx="16"/>
+  <text class="label" x="330" y="428">SmartPicker</text>
+  <text class="small" x="330" y="454">Search global or project assets</text>
+
+  <rect class="step s5" x="622" y="394" width="260" height="82" rx="16"/>
+  <text class="label" x="650" y="428">Workshop</text>
+  <text class="small" x="650" y="454">Turn scenes into video packages</text>
+
+  <path class="softline" d="M858 324 C832 360 750 390 752 394"/>
+  <path class="softline" d="M406 394 C406 356 405 337 405 324"/>
+  <path class="softline" d="M752 476 C810 550 922 586 1084 548"/>
+
+  <rect class="lane" x="64" y="592" width="1152" height="72" rx="18"/>
+  <text class="tiny" x="96" y="622">Agent collaboration</text>
+  <text class="small" x="96" y="649">The Agent can inspect workspace context and call guarded tools for cards, assets, workshop projects, settings, search, local-core operations, and approved external actions.</text>
+</svg>

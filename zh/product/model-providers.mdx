@@ -1,0 +1,80 @@
+---
+title: "模型与供应商配置"
+description: "Redbit 如何解析模型家族、变体、直接供应商、中继、凭证和 Agent runtime profile。"
+---
+
+# 模型与供应商配置
+
+Redbit 使用模型注册表，而不是把供应商选择分散在各个组件里。Settings 为每种媒体类型选择活跃模型家族和变体；注册表定义模型支持什么；payload builder 生成供应商需要的请求结构。
+
+![模型路由图：Settings、模型注册表、payload builder、直接供应商路由、中继路由和 Agent profile。](../../assets/diagrams/redbit-model-routing.svg)
+
+![配置边界图：Settings、浏览器存储、直接供应商、中继供应商、可选 Local Core、MCP 和外部自动化边界。](../../assets/diagrams/redbit-configuration-boundary.svg)
+
+## 谁应该阅读本文
+
+在配置真实供应商、排查模型消失，或向别人解释 API key、中继路由、Agent profile 和 Local Core 边界前，先读这一页。
+
+## 前置概念
+
+Redbit 默认按 BYOK 理解。Settings 可以保存凭证并路由请求，但额度、计费、地区访问、安全策略、保留政策和模型在线状态仍由供应商账号决定。
+
+## 配置层级
+
+| 层级 | 控制内容 |
+| --- | --- |
+| 模型家族 | `nano-banana`、`see-dream`、`flux`、`gpt-image`、`veo`、`seedance`、`minimax`、`suno` 等目录组 |
+| 变体 | 具体供应商/模型 ID，例如 `doubao-seedance-2.0-fast` |
+| 供应商凭证 | 根据模型家族使用 API key 或 access-key/secret-key |
+| 中继模式 | 将兼容媒体请求路由到配置的中继供应商 |
+| 自定义中继 | 由用户按媒体类型列出中继支持的模型 ID |
+| Agent runtime | 助手模型单独配置：`auto`、`relay` 或 `custom`，并可设置角色级覆盖 |
+
+## 当前目录快照
+
+| 媒体类型 | 当前注册表中的模型组 |
+| --- | --- |
+| Image | NanoBanana、SeeDream、Flux、GPT Image |
+| Video | Veo、Wan 2.2 Animate、Jimeng Video、Seedance 2.0、Kling Motion |
+| Speech / avatar | InfiniteTalk、Pixverse、Jimeng、Kling |
+| Audio / music | Minimax、Suno |
+| Describe / Agent LLM | Gemini 3/2.5/2.0 系列、GPT-5.2、GPT-5.1、GPT-4o |
+
+UI 中的实际可见模型会受中继模式和自定义中继模型列表影响，因为 Settings 会按供应商能力过滤可见模型。
+
+不要期待同一个 prompt 在不同模型中得到完全相同结果。模型之间可能在 prompt 理解、参考强度、画面比例支持、安全过滤、耗时、输出格式，以及是否支持图像/视频/音频/结构化输入方面不同。
+
+## 直接供应商 vs 中继
+
+| 路由 | 适用情况 | 需要注意 |
+| --- | --- | --- |
+| 直接供应商 | 你拥有目标供应商凭证，希望应用直接调用配置端点 | 浏览器 CORS、地区、输入格式、额度和供应商政策 |
+| 中继供应商 | 使用 `grsai`、`wavespeed`、`plato`、`acedata` 或 `other` 等兼容中继 | 中继支持范围可能小于完整模型目录 |
+| 自定义中继 | 你有 OpenAI-compatible 或类中继端点，并明确知道支持的媒体模型 ID | 需要按媒体类型列出兼容模型 ID |
+| Local Core | 工作流需要本地媒体、存储桥、FFmpeg、MCP、自动化、插件或代理能力 | 只配对自己启动并信任的本地引擎 |
+
+## 凭证处理
+
+Settings 会把配置持久化到浏览器存储。API key、access key、secret key 和 token 等敏感字段会在可用时先加密再写入 IndexedDB。加密或持久化失败时，Redbit 会写入脱敏 emergency snapshot，而不是直接写入原始凭证。
+
+实用建议：
+
+- 凭证只放在 Settings；
+- 不要把 key 粘贴到卡片、工作坊脚本或 Agent 聊天；
+- 当前工作流需要什么，就只配置最小权限；
+- 如果 key 暴露在 Settings 之外，请到供应商控制台轮换；
+- 上传机密媒体前先检查供应商条款。
+
+## Agent Runtime Profiles
+
+Agent 模型与生成模型分开配置。Settings 支持：
+
+- `auto`：从现有设置中解析兼容助手运行时；
+- `relay`：在可用时使用支持聊天的中继路由；
+- `custom`：配置供应商预设、协议、base URL、API key、模型 ID 和可选角色覆盖。
+
+Discovery 会在供应商暴露 models endpoint 时读取模型 ID。Capability test 会发起真实调用，并在本地保存 tool calling、structured output、system prompt 和 vision 支持情况。必需探测失败的模型不应成为保存后的默认 profile。
+
+## 下一步
+
+发送敏感素材前，继续看 [安全与凭据](./security-credentials.mdx)；如果要理解所选 Agent runtime profile 如何影响工具执行，请继续看 [Agent 工作模式](./agent-workflows.mdx)。

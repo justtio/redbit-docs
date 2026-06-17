@@ -1,0 +1,74 @@
+---
+title: "应用场景：AI 工作流自动化"
+description: "三个典型场景：Redbit 如何组合 Agent 执行、Local Core、生成卡片与资产复用。"
+---
+
+# 三个可落地的商业场景
+
+Redbit 最适合处理那些“不止需要一次模型回答”的工作流：用户意图、创意资产、生成 provider、本地执行、外部工具和人工审核都需要在同一个工作台里协作。
+
+---
+
+## 场景一：AI CMO 营销运营
+
+**行业痛点**
+出海和增长团队通常要在多个割裂工具中完成调研、本地化文案、创意生产、发布时间规划和效果复盘。
+
+**Redbit 工作流**
+
+<Card title="Campaign Workflow" icon="rocket" color="#F43F5E">
+  增长运营人员要求 Redbit 为新产品准备一组本地化营销素材。
+
+  1. **意图路由：** Agent Runtime 将请求结构化，并选择相关 growth、generator 或 automation tools。
+  2. **研究与证据：** 在配置可用时，工具可以收集产品页、社媒帖子、趋势证据等结构化输入。
+  3. **多模态生成：** 卡片化生成通过已配置 provider 产出文案、图片、视频概念或语音变体。
+  4. **自动化追踪：** 支持的 CMO/automation 任务可以交给 Local Core，并通过状态流或 polling fallback 回传进度。
+</Card>
+
+**业务价值：** 减少策划、生成、资产评审和投放执行之间的切换。具体节省取决于部署范围和接入的外部账号/工具。
+
+---
+
+## 场景二：资产复用与再风格化
+
+**行业痛点**
+品牌会沉淀大量产品图、海报、视频和活动素材，但复用过程常常手动、割裂、难追踪。
+
+**Redbit 工作流**
+
+<AccordionGroup>
+  <Accordion title="Asset Dock 作为工作记忆" icon="hand-pointer">
+    团队可以把生成或上传的资产沉淀到 Asset Dock，并在不同卡片和后续工作流中复用。
+  </Accordion>
+  <Accordion title="参考驱动生成" icon="image">
+    旧视觉可以成为新一轮生成、对比、prompt refinement 或活动变体的参考输入。
+  </Accordion>
+  <Accordion title="多模态重新包装" icon="palette">
+    一份活动资产可以继续进入文案、图片、视频、音频或 Workshop 流程，具体取决于可用 provider 和所选工具。
+  </Accordion>
+</AccordionGroup>
+
+**业务价值：** 提高资产复用率，加快创意迭代，并减少在不同创意工具之间切换造成的上下文丢失。
+
+---
+
+## 场景三：受控外部工具执行
+
+**行业痛点**
+团队希望 Agent 能访问内部工具、数据和自动化脚本，但不可控的模型执行很难审查，也难以满足审计要求。
+
+**Redbit 工作流**
+
+1. **MCP 与 Local Core 边界：** 外部工具可以通过 MCP mounts、Local Core endpoints、浏览器扩展、OpenCLI routes 或 plugins 暴露给 Redbit。
+2. **受控工具流水线：** `toolCallPipeline.ts` 会归一化 tool calls、解析 approvals、跟踪 mutation tools，并能在有副作用调用后暂停风险链路。
+3. **人工复核：** 产品可以通过 UI cards、task state、approval requests 和最终操作者决策，让敏感执行保持可观察。
+
+**业务价值：** 把模型推理和业务执行权分开。Redbit 提供的是一种接入外部工具的受控路径，而不是让模型拥有不可见的无限权限。
+
+---
+
+## 体验工作流
+
+<Card title="预约 Redbit 演示" icon="calendar-check" color="#10B981" href="https://redbit.one/#pricing">
+  了解 Redbit 如何为你的团队连接生成、资产、本地执行和 Agent 工作流。
+</Card>

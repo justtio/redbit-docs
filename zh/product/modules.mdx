@@ -1,0 +1,88 @@
+---
+title: "功能模块"
+description: "Cards、Asset Dock、SmartPicker、Workshop、Agent runtime、模型注册表、供应商 payload、Settings、i18n 和本地边界的结构化说明。"
+---
+
+# 功能模块
+
+本页从产品角度梳理 Redbit 当前模块。尽量避免过多实现细节，但列出的能力均能在仓库结构中找到依据。
+
+## 谁应该阅读本文
+
+当你需要快速确认每个模块当前负责什么时，读这一页。术语解释看 [核心概念与术语表](./concepts.mdx)；供应商配置看 [模型与供应商配置](./model-providers.mdx)。
+
+## 生成卡片
+
+卡片是 `/dashboard` 中最小的工作单元。
+
+| 卡片类型 | 用途 | 代码中的当前默认值 |
+| --- | --- | --- |
+| `describe` | 分析输入媒体并产出可复用 prompt 文本 | `gemini-3-flash-preview`，模板 `img_sd_tags` |
+| `image` | 生成或编辑图片 | `nano-banana`，变体 `gemini-3-pro-image-preview` |
+| `video` | 从 prompt 或参考素材生成视频 | `veo`，变体 `veo-3.1-fast-generate-preview` |
+| `audio` | 根据所选模型生成语音/音频/音乐相关输出 | `minimax`，变体 `speech-02-turbo` |
+| `speech` | 数字人/头像类语音视频任务 | `jimeng`，变体 `jimeng-speech-v1` |
+
+常见卡片操作包括创建、复制、更新、删除、批量生成、分组、选择、重排、设置参考、收藏结果、下载结果、取消生成、重试失败卡片和清理工作区。
+
+## 系列图模板
+
+图像卡片可以从 single 切换到 series。系列模式会基于一个基础 prompt 规划多个槽位，并使用以下模板：
+
+| 模板 | 适用方向 |
+| --- | --- |
+| `auto` | 从 prompt 自动推断合适结构 |
+| `ecommerce` | 主图、卖点、使用场景、细节、对比和转化图 |
+| `social` | 封面、生活方式、亮点、细节、教程、情绪、对比和收尾图 |
+| `explainer` | 概览、问题、步骤、细节、清单和总结类画面 |
+| `character` | 角色设定、表情、姿态、道具、头像和延展变体 |
+| `poster` | 主 KV、文字安全版、裁切变体、细节和广告版 |
+| `brand` | campaign 主视觉、识别系统、用户场景、信息图和行动图 |
+| `storyboard` | 带镜头和动作连续性的顺序分镜 |
+
+规划状态会保留基础 prompt、planned brief、可编辑 prompt 覆盖、每个槽位状态、选中槽位和生成结果。
+
+## 素材码头与 SmartPicker
+
+素材码头保存图片、视频、音频和文本资产。元数据和二进制 blob 分开保存，媒体写入应用存储后端。置顶素材被视为持久工作区资产；未置顶的最近素材有数量限制，可能被清理。
+
+SmartPicker 是卡片、工作坊和 Agent 流程共用的选择层。它可以过滤素材类型、搜索元数据/内容、预览媒体，并从全局素材码头或项目专属素材中选择。
+
+## Creative Workshop
+
+工作坊项目包含：
+
+- `script`；
+- 有序 `scenes`；
+- 角色、地点、物品和风格一致性素材；
+- 场景图片、视频、旁白、场景音乐和节奏视频；
+- 项目级 soundtrack；
+- 图像/视频/语音/音乐模型、画面比例、每场景图片数和风格设置。
+
+可见流程阶段是 `script`、`storyboard`、`videos`、`voiceover`、`music` 和 `rhythm`。
+
+## Agent Runtime
+
+Agent runtime 会组装工作区快照、路由意图、解析配置的模型运行时、暴露工具定义、通过受控 pipeline 执行工具调用、归一化工具结果，并在多步任务中检查漂移和进展。
+
+当前工具类别包括卡片、生成器设置、prompt、素材、搜索、工作坊、技能、MCP、本地媒体、自动化、CMO、社交交互、FFmpeg 和增长报告。实际可用性取决于配置以及本地/远端集成状态。
+
+## 模型注册表与供应商 Payload
+
+模型注册表是模型组、变体、媒体类型、比例、时长、中继兼容性和输入要求的事实来源。供应商 payload builder 会把卡片或工作坊任务转换成直接供应商或中继路由需要的请求结构。
+
+## Settings 与凭证
+
+Settings 保存模型默认值、供应商配置、中继配置、describe 模型设置、Agent runtime 设置、发现/探测 profile 和部分集成 key。敏感字段会在浏览器 IndexedDB 持久化前尝试加密；持久化失败时会写入脱敏 fallback snapshot。
+
+## i18n
+
+应用使用 `react-intl` 或项目 `t(...)` 入口。面向用户的文案应同时加入英文和中文 locale map。当前约定不使用组件内联语言三元分支。
+
+## 安全边界
+
+Redbit 区分浏览器本地状态、直接供应商调用、中继调用、Local Core 操作、MCP 挂载、浏览器扩展动作和外部自动化。发送敏感素材前，请先审查配置的供应商和配对的本地服务。
+
+## 下一步
+
+继续读 [模型与供应商配置](./model-providers.mdx)，理解 Settings、模型元数据、凭证和中继过滤如何决定模块是否真的可运行。

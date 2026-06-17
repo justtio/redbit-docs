@@ -1,0 +1,41 @@
+---
+title: "Agent Tools API & Schema Guard"
+description: "Build custom agent tools with dual-source Zod validation. Every tool output is schema-verified before execution — no hallucinated parameters allowed."
+---
+
+# Redefining ToolCalling
+
+In many introductory Agent applications, developers parse and execute JSON payloads returned from model endpoints with too little validation. If a model omits a field or changes a nested schema type, the application can fail at runtime.
+
+Redbit's `Harness Engineering` approach makes each `AgentTool` follow a **Dual-Source Schema Guardianship** contract. The LLM still proposes tool arguments, but the runtime validates and normalizes them before execution.
+
+## The API Contract (`types.ts`)
+
+Developing a native agent tool means following a defensive interface:
+
+```typescript
+export interface AgentTool {
+  name: string;
+  description: string;
+  definition: {
+    type: "object";
+    properties: Record<string, any>; // 1. The facade reported to the LLM
+    required: string[];
+  };
+  outputSchema?: z.ZodSchema; // 2. Optional Zod validator for runtime output
+
+  // Risk and execution metadata
+  isSubjective?: boolean;
+  sideEffectDomain?: 'none' | 'file_system' | 'network' | 'cmo';
+  retryable?: boolean;
+
+  execute: (args: any, deps: ToolDependencies) => Promise<any>;
+}
+```
+
+### 1. `outputSchema` Validation
+Before a tool result is trusted by downstream logic, the pipeline can validate the payload against Zod schemas.
+If the model returns a string where a Boolean is expected, or fabricates an unsupported property, the runtime rejects the malformed payload, records a structured warning, and gives the model a chance to correct course instead of passing unsafe data into `execute`.
+
+### 2. Blast-Radius Containment (`sideEffectDomain`)
+Tool authors can tag subjective execution with `isSubjective` and side-effect scope with `sideEffectDomain`. These fields help the runtime reason about retry policy, mutation tracking, and drift checks. A failed read-only query can be handled differently from a failed `network`, `file_system`, or `cmo` operation with side effects.

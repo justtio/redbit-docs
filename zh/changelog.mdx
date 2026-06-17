@@ -1,0 +1,63 @@
+---
+title: "更新日志"
+description: "追踪 Redbit 的进化 — 新功能、改进和修复。"
+---
+
+# 更新日志
+
+保持对 Redbit AI Studio 最新变更的了解。
+
+---
+
+## 未发布
+
+### ✨ 改进
+- **Agent 运行时画像** — Settings 可本地测试并保存自定义 describe 模型能力，并按 endpoint 隔离 direct 与 relay 运行时画像。
+- **能力感知路由** — Agent 调用会先解析 runtime config 与 capability plan，再按选中的画像执行，避免重新读取过期 Settings 状态。
+- **Claude 原生 Agent 运行时** — 自定义 describe 运行时可使用 Anthropic 原生 Messages API，同时继续通过 OpenAI-compatible 覆盖 DeepSeek/Groq/OpenRouter 类中转。
+- **Provider-first 模型接入引导** — 自定义 describe 配置现在提供服务商预设、在线模型发现和手动模型 ID 兜底，降低用户自行接入新模型或新中转站时对开发者的依赖。
+
+### 🛠 修复
+- 图片 payload 注入现在遵循最终解析出的 runtime/profile 能力，避免不支持 vision 的自定义 endpoint 收到图片输入。
+- required 探测步骤失败时不再保存看似成功的模型画像。
+
+---
+
+## v0.9.0 — 2026 年 3 月
+
+### 🚀 新功能
+- **创意工坊** — 分阶段创意项目流程：剧本 → 分镜 → 视频生成
+- **桌面引擎 (local-core)** — Rust 原生守护进程，内置 SQLite WAL、FFmpeg 和 MCP 网关
+- **Harness Engineering v2** — 工具输出自声明与 Zod Schema 验证
+- **置信度校准器** — Agent 自我评估与可靠性评分
+
+### ✨ 改进
+- 5 层统一意图路由减少简单命令中的可避免完整 LLM 回合
+- DAG 并发流水线实现工具并行执行
+- 意图漂移检测器帮助在长工具循环中发现并校准偏移
+- 瀑布流画布虚拟化实现超低内存占用
+
+### 🛡 安全性
+- 通过工具元数据标记破坏性和外部副作用操作
+- 敏感设置字段会在可用时先加密再写入浏览器 IndexedDB
+- SQLite WAL 模式实现崩溃安全的本地持久化
+
+---
+
+## v0.8.0 — 2026 年 2 月
+
+### 🚀 新功能
+- **MCP 网关** — 通过 Model Context Protocol 连接外部工具
+- **投喂区 (ReferZone)** — 面向本地优先素材预览和路由的拖拽接入面
+- **多模型支持** — Veo 3.1、Flux Pro、Suno Chirp 5
+
+### ✨ 改进
+- 卡片式 UI 取代线性聊天流
+- IndexedDB 持久化实现离线卡片恢复
+- 批量操作钩子支持多卡片同时操作
+
+---
+
+<Card title="功能建议？" icon="lightbulb" color="#F59E0B" href="https://github.com/justtio/redbit/issues">
+  我们非常期待你的反馈。在 GitHub 上提交功能请求和错误报告。
+</Card>

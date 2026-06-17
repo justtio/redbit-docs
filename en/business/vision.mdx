@@ -1,0 +1,54 @@
+---
+title: "Vision: Beyond Chatbot Shells"
+description: "How Redbit turns model intelligence into bounded product workflows through Harness Engineering, Local Core, and a multimodal creation canvas."
+---
+
+# From Chat Output to Executable Workflows
+
+Many AI products stop at the conversation layer: users ask, the model answers, and the hard work of turning that answer into a reliable workflow remains manual. Redbit is built one layer above foundation models. Its goal is to convert model intelligence into inspectable, repeatable product workflows for creative production and growth operations.
+
+The central product bet is simple: the winning layer is not only the model, but the system that can connect models to tools, assets, business context, local execution, and human approval.
+
+---
+
+## Core Commercial Moats
+
+<CardGroup cols={3}>
+  <Card title="Harness Engineering" icon="shield-check" color="#10B981">
+    **Bounded agent execution**
+    Redbit wraps model calls with preflight routing, intent framing, guarded tool execution, result normalization, drift checks, and recalibration. This reduces blind ReAct-style trial and error and gives teams a clearer audit surface for agent behavior.
+  </Card>
+  <Card title="Rust Local Core" icon="server" color="#6366F1">
+    **Local capability bridge**
+    `local-core` extends the browser with Axum HTTP/SSE/WebSocket endpoints for SQLite-backed CMO data, media processing, storage, automation, MCP gateway, browser extension coordination, and plugins.
+  </Card>
+  <Card title="Card Workspace" icon="clapperboard" color="#F43F5E">
+    **Multimodal creation surface**
+    Redbit organizes generation, references, prompts, previews, and assets as cards. Generated and uploaded assets can flow into Asset Dock and downstream workflows instead of disappearing into one-off chat history.
+  </Card>
+</CardGroup>
+
+---
+
+## Model Context Protocol Ecosystem
+
+Redbit is designed to integrate external tools without hard-coding every provider into the UI.
+
+<Steps>
+  <Step title="Connect external capabilities">
+    MCP mounts allow compatible HTTP, SSE, or stdio servers to expose tools and resources to the agent runtime through a gateway layer.
+  </Step>
+  <Step title="Keep execution bounded">
+    Approval state, secret resolution, mutation tracking, and guarded tool loops help keep external execution observable and interruptible.
+  </Step>
+</Steps>
+
+## Market Direction
+
+As model APIs become more capable and interchangeable, more value moves to workflow ownership: context, UI ergonomics, tool execution, local integration, approval policy, and asset reuse.
+
+**Phase One:** focus on AI CMO and growth workflows where creative generation, social research, asset reuse, and automation are naturally connected.
+
+**Phase Two:** deepen local and private deployment scenarios where teams need stronger control over data locality, integrations, auditability, and operator approval.
+
+> Redbit is not trying to be another chat box. It is a workflow layer for turning model output into controlled business action.

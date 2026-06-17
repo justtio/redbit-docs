@@ -1,0 +1,74 @@
+---
+title: "Use Cases: AI Workflow Automation"
+description: "Three practical scenarios showing how Redbit combines agent execution, Local Core, generation cards, and asset reuse."
+---
+
+# Three Practical Commercial Scenarios
+
+Redbit is strongest when a workflow needs more than a single model response: user intent, creative assets, generation providers, local execution, external tools, and human review all have to meet in one workspace.
+
+---
+
+## Scenario 1: AI CMO Campaign Operations
+
+**Industry pain point**
+International marketing teams often coordinate research, localized copy, creative production, posting schedules, and performance review across several disconnected tools.
+
+**Redbit workflow**
+
+<Card title="Campaign Workflow" icon="rocket" color="#F43F5E">
+  A growth operator asks Redbit to prepare a localized campaign for a new product.
+
+  1. **Intent routing:** the Agent Runtime frames the request and selects relevant growth, generator, or automation tools.
+  2. **Research and evidence:** tools gather structured inputs such as product page data, social posts, or trend evidence when configured.
+  3. **Multimodal generation:** card-based generation creates copy, images, video concepts, or speech variants through the configured providers.
+  4. **Automation tracking:** CMO and automation tasks can be handed to Local Core where supported, with status returned through task streams or polling fallback.
+</Card>
+
+**Business impact:** fewer handoffs between planning, generation, asset review, and campaign execution. The exact savings depend on deployment scope and which external accounts/tools are connected.
+
+---
+
+## Scenario 2: Asset Reuse and Restyling
+
+**Industry pain point**
+Brands accumulate large archives of product photos, posters, videos, and campaign materials, but reuse is often manual and fragmented.
+
+**Redbit workflow**
+
+<AccordionGroup>
+  <Accordion title="Asset Dock as working memory" icon="hand-pointer">
+    Teams can bring generated or uploaded assets into Asset Dock and reuse them across cards and downstream workflows.
+  </Accordion>
+  <Accordion title="Reference-driven generation" icon="image">
+    Existing visuals can become references for new generation runs, comparisons, prompt refinement, or campaign variants.
+  </Accordion>
+  <Accordion title="Multimodal repackaging" icon="palette">
+    A single campaign asset can feed copy, image, video, audio, or workshop flows depending on the available model provider and selected tool.
+  </Accordion>
+</AccordionGroup>
+
+**Business impact:** stronger asset reuse, faster iteration, and less context loss between creative tools.
+
+---
+
+## Scenario 3: Controlled External Tool Execution
+
+**Industry pain point**
+Teams want agents to access internal tools, data, and automation scripts, but uncontrolled model execution is difficult to review or audit.
+
+**Redbit workflow**
+
+1. **MCP and Local Core boundary:** external tools can be exposed through MCP mounts, Local Core endpoints, browser extension paths, OpenCLI routes, or plugins.
+2. **Guarded tool pipeline:** `toolCallPipeline.ts` normalizes tool calls, resolves approvals, tracks mutation tools, and can pause risky chains after side-effecting operations.
+3. **Human review:** the product can keep sensitive execution observable through UI cards, task state, approval requests, and final operator decisions.
+
+**Business impact:** better separation between model reasoning and operational authority. Redbit gives teams a path to integrate tools without giving the model invisible, unlimited control.
+
+---
+
+## Try the Workflow
+
+<Card title="Book a Redbit demo" icon="calendar-check" color="#10B981" href="https://redbit.one/#pricing">
+  See how Redbit connects generation, assets, local execution, and agent workflows for your team.
+</Card>

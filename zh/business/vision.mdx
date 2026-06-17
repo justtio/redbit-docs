@@ -1,0 +1,54 @@
+---
+title: "愿景：超越对话框"
+description: "Redbit 如何通过 Harness Engineering、Local Core 和多模态创作画布，把模型能力转成可控业务工作流。"
+---
+
+# 从聊天输出到可执行工作流
+
+很多 AI 产品停留在对话层：用户提问，模型回答，真正把答案落成可靠工作流的部分仍然靠人手动完成。Redbit 建在模型层之上，目标是把模型智能转化为可观察、可复用、可审计的创作与增长运营工作流。
+
+核心判断很简单：未来有价值的不只是模型本身，还有把模型连接到工具、资产、业务上下文、本地执行和人类审批的系统层。
+
+---
+
+## 核心商业护城河
+
+<CardGroup cols={3}>
+  <Card title="Harness Engineering" icon="shield-check" color="#10B981">
+    **有边界的 Agent 执行**
+    Redbit 在模型调用外层加入 preflight 路由、意图帧、受控工具执行、结果归一化、漂移检测和 recalibration，减少盲目 ReAct 式试错，并为团队提供更清晰的 Agent 行为审计面。
+  </Card>
+  <Card title="Rust Local Core" icon="server" color="#6366F1">
+    **本地能力桥**
+    `local-core` 通过 Axum HTTP/SSE/WebSocket 端点扩展浏览器能力，覆盖 SQLite CMO 数据、媒体处理、存储、自动化、MCP gateway、浏览器扩展协作和插件。
+  </Card>
+  <Card title="Card Workspace" icon="clapperboard" color="#F43F5E">
+    **多模态创作界面**
+    Redbit 将生成、参考图、prompt、预览和资产组织成卡片。上传和生成的内容可以进入 Asset Dock 与后续工作流，而不是消失在一次性聊天记录中。
+  </Card>
+</CardGroup>
+
+---
+
+## Model Context Protocol 生态
+
+Redbit 的设计目标是接入外部工具，而不是把每个服务商都硬编码进 UI。
+
+<Steps>
+  <Step title="连接外部能力">
+    MCP mount 允许兼容 HTTP、SSE 或 stdio 的 server 通过 gateway 层向 Agent Runtime 暴露 tools 和 resources。
+  </Step>
+  <Step title="保持执行有边界">
+    approval state、secret resolution、mutation tracking 和 guarded tool loop 让外部执行保持可观察、可中断。
+  </Step>
+</Steps>
+
+## 市场方向
+
+当模型 API 越来越强、也越来越可替换时，更多价值会转移到工作流所有权：上下文、UI 易用性、工具执行、本地集成、审批策略和资产复用。
+
+**第一阶段：** 聚焦 AI CMO 与增长工作流，把创意生成、社媒研究、资产复用和自动化连接起来。
+
+**第二阶段：** 深入本地化和私有化部署场景，服务那些更重视数据位置、系统集成、可审计性和操作者审批的团队。
+
+> Redbit 不是另一个聊天框，而是把模型输出转成受控业务动作的工作流层。

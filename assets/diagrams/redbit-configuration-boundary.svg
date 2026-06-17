@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Redbit configuration and security boundary</title>
+  <desc id="desc">A diagram showing Redbit Settings, browser storage, direct providers, relay providers, optional Local Core, MCP, and external automation boundaries.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .zone { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .settings { fill: #fff1f2; stroke: #fb7185; }
+      .browser { fill: #eff6ff; stroke: #60a5fa; }
+      .provider { fill: #ecfdf5; stroke: #34d399; }
+      .local { fill: #f5f3ff; stroke: #a78bfa; }
+      .risk { fill: #fffbeb; stroke: #f59e0b; }
+      .title { font: 700 28px Inter, Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Inter, Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Inter, Arial, sans-serif; fill: #475569; }
+      .tiny { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; text-transform: uppercase; }
+      .line { stroke: #334155; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="72" y="70">Configuration and Security Boundary</text>
+  <text class="small" x="72" y="100">Redbit stores configuration locally, then routes only the selected workflow through the configured provider, relay, or trusted local service.</text>
+
+  <rect class="zone" x="64" y="138" width="520" height="426" rx="22"/>
+  <text class="tiny" x="96" y="178">Browser workspace</text>
+
+  <rect class="settings" x="98" y="218" width="198" height="118" rx="14"/>
+  <text class="label" x="126" y="258">Settings</text>
+  <text class="small" x="126" y="284">Provider keys, relay,</text>
+  <text class="small" x="126" y="306">Agent runtime profile</text>
+
+  <rect class="browser" x="348" y="218" width="198" height="118" rx="14"/>
+  <text class="label" x="376" y="258">Local storage</text>
+  <text class="small" x="376" y="284">IndexedDB / OPFS</text>
+  <text class="small" x="376" y="306">encrypted or redacted</text>
+
+  <rect class="browser" x="98" y="396" width="198" height="104" rx="14"/>
+  <text class="label" x="126" y="436">Cards & assets</text>
+  <text class="small" x="126" y="462">Prompts, references,</text>
+  <text class="small" x="126" y="484">results, metadata</text>
+
+  <rect class="browser" x="348" y="396" width="198" height="104" rx="14"/>
+  <text class="label" x="376" y="436">Agent runtime</text>
+  <text class="small" x="376" y="462">Registered tools and</text>
+  <text class="small" x="376" y="484">normalized results</text>
+
+  <path class="line" d="M296 277 H348"/>
+  <path class="dash" d="M197 336 V396"/>
+  <path class="dash" d="M447 336 V396"/>
+
+  <rect class="provider" x="702" y="150" width="204" height="112" rx="16"/>
+  <text class="label" x="732" y="190">Direct provider</text>
+  <text class="small" x="732" y="218">Configured endpoint,</text>
+  <text class="small" x="732" y="240">quota, policy</text>
+
+  <rect class="provider" x="980" y="150" width="204" height="112" rx="16"/>
+  <text class="label" x="1010" y="190">Relay provider</text>
+  <text class="small" x="1010" y="218">Capability-filtered</text>
+  <text class="small" x="1010" y="240">model route</text>
+
+  <rect class="local" x="702" y="350" width="204" height="112" rx="16"/>
+  <text class="label" x="732" y="390">Local Core</text>
+  <text class="small" x="732" y="418">Optional local media,</text>
+  <text class="small" x="732" y="440">MCP, FFmpeg, storage</text>
+
+  <rect class="risk" x="980" y="350" width="204" height="112" rx="16"/>
+  <text class="label" x="1010" y="390">External effects</text>
+  <text class="small" x="1010" y="418">Automation, posting,</text>
+  <text class="small" x="1010" y="440">real accounts</text>
+
+  <path class="line" d="M546 448 C610 430 642 222 702 206"/>
+  <path class="line" d="M546 448 C650 330 858 238 980 206"/>
+  <path class="dash" d="M546 448 C618 444 644 414 702 406"/>
+  <path class="dash" d="M906 406 H980"/>
+
+  <rect class="zone" x="64" y="604" width="1120" height="58" rx="16"/>
+  <text class="tiny" x="96" y="630">Practical rule</text>
+  <text class="small" x="96" y="652">Keep credentials in Settings, verify the selected route before sending sensitive media, and use Local Core or external automation only when explicitly needed.</text>
+</svg>

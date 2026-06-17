@@ -1,0 +1,39 @@
+---
+title: "Multi-Language Support (i18n)"
+description: "How Redbit keeps English and Chinese UI copy aligned through react-intl, t(...), and 1:1 language dictionary structure."
+---
+
+# Multi-Language Support
+
+Redbit keeps user-facing UI copy in English and Chinese language maps. New product labels, Agent feedback, Workshop text, and settings copy should use the project i18n entry points instead of inline language branching.
+
+## Who Should Read This
+
+Read this before editing UI text, Agent messages, settings labels, Workshop labels, or docs that point contributors to translation keys.
+
+## Dictionary Structure
+
+The UI dictionaries live under `src/language/` with parallel `zh` and `en` maps:
+```text
+src/language/
+  ├── zh/
+  │   ├── basic.ts
+  │   ├── workshop.ts
+  │   ├── agent.ts
+  └── en/
+      ├── basic.ts
+      ├── workshop.ts
+      ├── agent.ts
+```
+
+## Editing Rules
+
+1. Add matching keys to both `en` and `zh`.
+2. Verify the exact sibling key structure before adding a new key.
+3. In React components, use `react-intl` or the existing project `t(...)` entry point.
+4. Outside React components, use `t(...)` and read language preference through the locale store when needed.
+5. Do not use inline checks such as `isEn ? "..." : "..."` or `appLang === "en" ? "..." : "..."`.
+
+## Next Step
+
+Use [Feature Modules](./modules.mdx) for the product-facing module map, or the repository `AGENTS.md` i18n rules before changing app code.

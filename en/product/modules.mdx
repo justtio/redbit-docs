@@ -1,0 +1,88 @@
+---
+title: "Feature Modules"
+description: "A structured reference for Cards, Asset Dock, SmartPicker, Workshop, Agent runtime, model registry, provider payloads, settings, i18n, and local boundaries."
+---
+
+# Feature Modules
+
+This page is a product-facing map of Redbit's current modules. It avoids implementation detail where possible, but every capability listed here is grounded in the repository structure.
+
+## Who Should Read This
+
+Use this page when you need a compact reference for what each module currently does. For definitions, start with [Concepts and Glossary](./concepts.mdx); for provider setup, use [Models and Provider Configuration](./model-providers.mdx).
+
+## Generation Cards
+
+Cards are the smallest unit of work in `/dashboard`.
+
+| Card type | Purpose | Current defaults from code |
+| --- | --- | --- |
+| `describe` | Analyze input media and produce prompt text | `gemini-3-flash-preview`, template `img_sd_tags` |
+| `image` | Generate or edit images | `nano-banana`, variant `gemini-3-pro-image-preview` |
+| `video` | Generate video from prompt or references | `veo`, variant `veo-3.1-fast-generate-preview` |
+| `audio` | Generate speech/audio/music style outputs | `minimax`, variant `speech-02-turbo` |
+| `speech` | Digital human / avatar style speech-video tasks | `jimeng`, variant `jimeng-speech-v1` |
+
+Common card actions include create, copy, update, delete, batch generate, group, select, reorder, set references, favorite results, download results, cancel generation, retry failed cards, and clear workspace.
+
+## Series Image Templates
+
+Image cards can switch from single mode to series mode. Series mode plans 3, 4, 6, or 8 slots and can use these templates:
+
+| Template | Intended use |
+| --- | --- |
+| `auto` | Infer the best structure from the prompt |
+| `ecommerce` | Hero, selling point, usage, detail, comparison, and conversion shots |
+| `social` | Cover, lifestyle, highlight, detail, how-to, mood, comparison, closing frame |
+| `explainer` | Overview, problem, steps, details, checklist, summary-style frames |
+| `character` | Character sheet, expression, pose, prop, avatar, and variants |
+| `poster` | Key visual, text-safe layout, crop variants, details, ad variant |
+| `brand` | Campaign hero, identity system, audience context, message frame, CTA |
+| `storyboard` | Ordered storyboard frames with camera and action continuity |
+
+The planner keeps a base prompt, planned briefs, editable prompt overrides, per-slot status, selected slot, and generated result state.
+
+## Asset Dock and SmartPicker
+
+Asset Dock stores image, video, audio, and text assets. Metadata is kept separately from binary blobs, and media is written through the app storage backend. Pinned assets are treated as persistent workspace assets; recent unpinned assets are limited and can be cleaned up.
+
+SmartPicker is the selection layer used by cards, Workshop, and Agent flows. It can filter accepted asset types, search metadata/content, preview media, and select from global Asset Dock or project-specific assets.
+
+## Creative Workshop
+
+Workshop projects contain:
+
+- `script`;
+- ordered `scenes`;
+- consistency items for character, location, item, and style references;
+- generated scene images, videos, voiceover, scene music, rhythm videos;
+- project-level soundtracks;
+- settings for image/video/voice/music models, aspect ratio, images per scene, and style.
+
+The visible flow stages are `script`, `storyboard`, `videos`, `voiceover`, `music`, and `rhythm`.
+
+## Agent Runtime
+
+The Agent runtime assembles a workspace snapshot, routes intent, resolves the configured model runtime, exposes tool definitions, executes tool calls through a guarded pipeline, normalizes tool results, and checks drift/progress during multi-step tasks.
+
+Current tool categories include cards, generator settings, prompts, assets, search, Workshop, skills, MCP, local media, automation, CMO, social interaction, FFmpeg, and growth reports. Availability depends on configuration and local/remote integration readiness.
+
+## Model Registry and Provider Payloads
+
+The model registry is the source of truth for supported model groups, variants, media type, ratios, durations, relay compatibility, and input requirements. Provider payload builders convert a card or Workshop task into the request shape expected by a direct provider or relay route.
+
+## Settings and Credentials
+
+Settings store model defaults, provider configs, relay configs, describe model settings, Agent runtime settings, discovery/probe profiles, and selected integration keys. Sensitive fields are encrypted before browser IndexedDB persistence when the browser crypto path is available, with redacted fallback snapshots used on persistence failures.
+
+## i18n
+
+The app uses `react-intl` or the project `t(...)` entry point. Product-facing text should be added to both English and Chinese locale maps. Inline language ternaries are not part of the current convention.
+
+## Safety Boundaries
+
+Redbit distinguishes browser-only state, direct provider calls, relay calls, local-core operations, MCP mounts, browser extension actions, and external automation. Users should review configured providers and paired local services before sending sensitive material through a workflow.
+
+## Next Step
+
+Continue to [Models and Provider Configuration](./model-providers.mdx) to understand how Settings, model metadata, credentials, and relay filters determine which modules can actually run.

@@ -1,0 +1,81 @@
+---
+title: "Evaluation Guide"
+description: "A practical evaluation path for deciding whether Redbit fits a team, workflow, provider setup, and handoff model."
+---
+
+# Evaluation Guide
+
+Use this guide to evaluate Redbit as a product workflow, not only as a media-generation interface. A good evaluation checks the creative path, provider route, reuse model, Agent boundary, and team handoff artifact.
+
+## Who Should Read This
+
+| Reader | Use this page to |
+| --- | --- |
+| Potential user | Decide whether Redbit matches the kind of creative work you run |
+| Team lead | Compare Redbit with a direct provider console, chat tool, or custom internal tool |
+| Engineering or creative operator | Plan a small proof of fit without exposing unnecessary credentials or source media |
+
+## Before You Evaluate
+
+Read [Concepts and Glossary](./concepts.mdx) first if the product terms are new. Redbit coordinates cards, assets, providers, and optional local integrations. It does not own model quota, provider uptime, model policy, billing, or output quality.
+
+## Evaluation Outcome
+
+By the end of a useful evaluation, you should be able to answer:
+
+| Question | Good evidence |
+| --- | --- |
+| Can the team run its common input type? | A representative prompt, source image, video, audio, or script works in the selected Card or Workshop path |
+| Is provider access clear? | Settings has the minimum direct provider, relay, or custom relay route needed for the test |
+| Can outputs be reused? | Useful results are pinned or selected through Asset Dock and SmartPicker, not lost in a one-off thread |
+| Is the Agent helpful without becoming unsafe? | The Agent handles bounded workspace actions, while credentials, billing, deletion, and external effects stay reviewed |
+| Can another teammate continue the work? | Cards, Workshop project state, pinned assets, exports, and notes are understandable without private chat context |
+
+## 45-Minute Evaluation Path
+
+| Step | Action | Pass condition |
+| --- | --- | --- |
+| 1. Pick one real scenario | Choose one input, one output, and one reviewer | The scope fits one short session |
+| 2. Confirm provider route | Configure only the model family needed for the scenario | Settings shows a direct provider, relay, or custom relay route that matches the media type |
+| 3. Run a manual baseline | Create a Card or Workshop project before using the Agent | The user can inspect prompt, model, status, result, and error state |
+| 4. Reuse one output | Save a result to Asset Dock and select it again through SmartPicker | The asset is available as a later reference |
+| 5. Try bounded Agent help | Ask for a multi-step workspace task with clear targets | Tool actions are reviewable and produce visible workspace changes |
+| 6. Handoff the result | Download outputs, export a Workshop package, or record the selected assets and route | Another teammate can continue without guessing hidden state |
+
+## Fit Signals
+
+| Redbit is a strong fit when | Redbit is a weak fit when |
+| --- | --- |
+| Work involves repeated prompts, references, model choices, or review steps | You only need one occasional generation from one provider console |
+| Outputs need to become inputs for later Cards or Workshop scenes | Results do not need reuse, comparison, or project structure |
+| The team wants BYOK routing with explicit provider and relay control | The team expects Redbit to supply every model credit, quota, or provider SLA |
+| Operators need a visible Agent that calls bounded tools | The desired automation requires unrestricted shell access or unreviewed external posting |
+| Handoff matters between creative, growth, support, and engineering roles | Work always stays with one person and one chat transcript |
+
+## Realistic Scenario Cards
+
+<CardGroup cols={3}>
+  <Card title="Ecommerce product image set" icon="shopping-bag" color="#10B981">
+    Input: product photos, selling points, target ratios, and brand notes. Recommended path: Image Cards with Series `ecommerce`, Asset Dock, SmartPicker, and a configured image provider. Output: reviewed hero, detail, usage, comparison, and social-ready images. Watch for product identity drift, provider policy, and human review before publishing.
+  </Card>
+  <Card title="Short video storyboard" icon="clapperboard" color="#3B82F6">
+    Input: campaign brief, script, reference image, and scene list. Recommended path: Workshop for script and scenes, then Video Cards or Seedance modes for clips. Output: scene images, video clips, optional voice/music assets, and export packages where configured. Watch for video queue time, duration, resolution, and reference-role rules.
+  </Card>
+  <Card title="Social growth report task" icon="chart-line" color="#F59E0B">
+    Input: objective, public links or approved data sources, and review criteria. Recommended path: Agent runtime with configured search, CMO, growth-report, MCP, or Local Core tools only when available. Output: reviewable findings, Cards, assets, or Workshop preparation. Watch for real-account actions, tool availability, and provider/runtime capability tests.
+  </Card>
+</CardGroup>
+
+## Team Handoff Checklist
+
+| Artifact | Why it matters |
+| --- | --- |
+| Selected Cards and groups | Shows prompts, settings, status, results, and failures |
+| Pinned Asset Dock items | Keeps reusable inputs visible for the next operator |
+| Workshop project | Preserves script, scenes, consistency references, generated media, and export settings |
+| Provider route note | Explains whether the result used direct provider, relay, custom relay, or Local Core |
+| Known limits | Captures slow video, provider errors, model mismatch, or manual review needs |
+
+## Next Step
+
+Use [Decision Matrix](./decision-matrix.mdx) to pick the right module, then run [First Project Walkthrough](./first-project-walkthrough.mdx) with one representative scenario.

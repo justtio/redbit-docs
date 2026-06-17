@@ -1,0 +1,60 @@
+---
+title: "Operational Checklists"
+description: "Practical Redbit checklists for launch configuration, first generation, and video generation troubleshooting."
+---
+
+# Operational Checklists
+
+Use these checklists before sending real work through Redbit. They are intentionally short and operational: each item changes whether a user, customer, or teammate should proceed.
+
+## Who Should Read This
+
+| Reader | Use this page when |
+| --- | --- |
+| Workspace owner | You are preparing a Redbit environment for users |
+| First-time user | You are about to run a real generation task |
+| Support or success team | A video or provider workflow failed and you need a structured first pass |
+
+## Before You Read
+
+Know which route you are using: direct provider, relay provider, custom relay, or Local Core. Do not paste credentials into prompts, Cards, Workshop scripts, or Agent chat.
+
+## Pre-Launch Configuration
+
+| Check | Why it matters |
+| --- | --- |
+| Confirm the workspace URL and route (`/dashboard`, `/workshop`, Settings) | Users need a stable entry point before model setup |
+| Configure only the provider keys required for the planned workflow | Limits accidental exposure and reduces provider confusion |
+| Confirm whether the route is direct provider, relay, or custom relay | Visible models and payload shape differ by route |
+| Test the describe/Agent runtime profile if the Agent will be used | Tool calling, structured output, system prompt, and vision support vary by model |
+| Pair Local Core only when local media, MCP, automation, FFmpeg, plugin, or storage bridge features are required | Browser-only generation does not need a local engine |
+| Verify provider terms for confidential media | Redbit coordinates requests; provider privacy and retention policies still apply |
+| Decide how assets will be backed up or exported | Browser profile deletion, site-data clearing, or quota pressure can remove local data |
+
+## Before the First Generation
+
+| Check | Why it matters |
+| --- | --- |
+| Select the correct tab: `Describe`, `Image`, `Video`, `Audio`, or `Speech` | The tab controls visible models, defaults, and input requirements |
+| Confirm model family and variant | Different models produce different outputs from the same prompt |
+| Confirm ratio, duration, resolution, and audio settings where relevant | Video and image providers reject unsupported combinations |
+| Attach only the references the selected model accepts | Seedance, motion models, image editors, and describe models use different inputs |
+| Keep source media out of Agent chat unless the task requires the Agent to inspect or route it | This avoids unnecessary exposure through assistant context |
+| Save or pin outputs you intend to reuse | Temporary recent assets may be cleaned up |
+| Review the card error before retrying | Retrying without changing credentials, inputs, or route usually repeats the same failure |
+
+## Video Failure Triage
+
+| Symptom | First checks |
+| --- | --- |
+| Missing reference error | Confirm the mode and required reference role: first frame, last frame, image reference, video reference, or audio reference |
+| Seedance reference mix error | Use either first/last-frame roles or multi-reference roles in one task, not both |
+| Provider or relay error | Check API key type, base URL, relay capability, model ID mapping, quota, and provider status |
+| Model disappears after enabling relay | The relay capability filter may not include that family or variant |
+| Slow or stalled video | Try a shorter duration, lower resolution, fast variant, or a provider route with less queue pressure |
+| Result does not match prompt | Compare provider/model capability, reference strength, prompt specificity, and whether the selected model supports that input type |
+| Agent says it completed but no media exists | Check whether a generation tool actually returned `{ success: true }`; text-only completion is not enough |
+
+## Next Step
+
+Use [Models and Provider Configuration](./model-providers.mdx) for route setup, [Seedance Video Workflows](./seedance-video.mdx) for Seedance-specific failures, or [FAQ and Troubleshooting](../faq.mdx) for user-facing answers.

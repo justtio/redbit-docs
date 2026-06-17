@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Redbit product documentation reading map</title>
+  <desc id="desc">A reading path from overview through evaluation, quickstart, first project, decision matrix, workflows, modules, provider configuration, security, Agent workflows, Seedance, troubleshooting, and FAQ.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px Inter, Arial, sans-serif; fill: #0f172a; }
+      .small { font: 500 13px Inter, Arial, sans-serif; fill: #475569; }
+      .tiny { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; text-transform: uppercase; }
+      .label { font: 700 16px Inter, Arial, sans-serif; fill: #111827; }
+      .node { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; }
+      .start { fill: #fff1f2; stroke: #fb7185; }
+      .evaluate { fill: #ecfdf5; stroke: #34d399; }
+      .operate { fill: #eff6ff; stroke: #60a5fa; }
+      .configure { fill: #f5f3ff; stroke: #a78bfa; }
+      .resolve { fill: #fffbeb; stroke: #f59e0b; }
+      .line { stroke: #334155; stroke-width: 2.1; fill: none; marker-end: url(#arrow); }
+      .soft { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="72" y="64">Recommended Product Docs Path</text>
+  <text class="small" x="72" y="94">Read in this order when onboarding a user, evaluating Redbit for a team, or preparing handoff-ready work.</text>
+
+  <rect class="node start" x="60" y="150" width="170" height="88" rx="14"/>
+  <text class="tiny" x="88" y="180">1</text>
+  <text class="label" x="88" y="208">Overview</text>
+  <text class="small" x="88" y="228">Product map</text>
+
+  <rect class="node evaluate" x="260" y="150" width="170" height="88" rx="14"/>
+  <text class="tiny" x="288" y="180">2</text>
+  <text class="label" x="288" y="208">Evaluation</text>
+  <text class="small" x="288" y="228">Fit and scenarios</text>
+
+  <rect class="node start" x="460" y="150" width="170" height="88" rx="14"/>
+  <text class="tiny" x="488" y="180">3</text>
+  <text class="label" x="488" y="208">Quickstart</text>
+  <text class="small" x="488" y="228">First safe card</text>
+
+  <rect class="node operate" x="660" y="150" width="170" height="88" rx="14"/>
+  <text class="tiny" x="688" y="180">4</text>
+  <text class="label" x="688" y="208">First Project</text>
+  <text class="small" x="688" y="228">End-to-end run</text>
+
+  <rect class="node evaluate" x="860" y="150" width="170" height="88" rx="14"/>
+  <text class="tiny" x="888" y="180">5</text>
+  <text class="label" x="888" y="208">Decision Matrix</text>
+  <text class="small" x="888" y="228">Choose surface</text>
+
+  <rect class="node operate" x="1060" y="150" width="170" height="88" rx="14"/>
+  <text class="tiny" x="1088" y="180">6</text>
+  <text class="label" x="1088" y="208">Workflows</text>
+  <text class="small" x="1088" y="228">Operating model</text>
+
+  <rect class="node operate" x="1060" y="355" width="170" height="88" rx="14"/>
+  <text class="tiny" x="1088" y="385">7</text>
+  <text class="label" x="1088" y="413">Modules</text>
+  <text class="small" x="1088" y="433">Feature map</text>
+
+  <rect class="node configure" x="860" y="355" width="170" height="88" rx="14"/>
+  <text class="tiny" x="888" y="385">8</text>
+  <text class="label" x="888" y="413">Providers</text>
+  <text class="small" x="888" y="433">Routes and models</text>
+
+  <rect class="node configure" x="660" y="355" width="170" height="88" rx="14"/>
+  <text class="tiny" x="688" y="385">9</text>
+  <text class="label" x="688" y="413">Security</text>
+  <text class="small" x="688" y="433">Credential boundary</text>
+
+  <rect class="node operate" x="460" y="355" width="170" height="88" rx="14"/>
+  <text class="tiny" x="488" y="385">10</text>
+  <text class="label" x="488" y="413">Agent</text>
+  <text class="small" x="488" y="433">Guarded tools</text>
+
+  <rect class="node resolve" x="260" y="355" width="170" height="88" rx="14"/>
+  <text class="tiny" x="288" y="385">11</text>
+  <text class="label" x="288" y="413">Seedance</text>
+  <text class="small" x="288" y="433">Video references</text>
+
+  <rect class="node resolve" x="60" y="355" width="170" height="88" rx="14"/>
+  <text class="tiny" x="88" y="385">12</text>
+  <text class="label" x="88" y="413">Troubleshooting</text>
+  <text class="small" x="88" y="433">Recovery table</text>
+
+  <path class="line" d="M230 194 H260"/>
+  <path class="line" d="M430 194 H460"/>
+  <path class="line" d="M630 194 H660"/>
+  <path class="line" d="M830 194 H860"/>
+  <path class="line" d="M1030 194 H1060"/>
+  <path class="line" d="M1145 238 V355"/>
+  <path class="line" d="M1060 399 H1030"/>
+  <path class="line" d="M860 399 H830"/>
+  <path class="line" d="M660 399 H630"/>
+  <path class="line" d="M460 399 H430"/>
+  <path class="line" d="M260 399 H230"/>
+
+  <rect class="node" x="72" y="562" width="1086" height="74" rx="16"/>
+  <text class="tiny" x="104" y="592">Supporting references</text>
+  <text class="small" x="104" y="618">Use Concepts for shared vocabulary, Checklists before real provider usage, Cards for dashboard behavior, and FAQ for short answers.</text>
+  <path class="soft" d="M145 443 C160 500 200 536 284 562"/>
+</svg>

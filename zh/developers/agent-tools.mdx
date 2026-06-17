@@ -1,0 +1,41 @@
+---
+title: "Agent Tools API 与 Schema 防护"
+description: "使用双源 Zod 验证构建自定义 Agent 工具。每个工具输出在执行前都经过 Schema 验证 — 杜绝幻觉参数。"
+---
+
+# 重新定义 ToolCalling
+
+在粗制滥造的早期 Agent 系统中，前端开发者经常直接将 OpenAI 返回的 JSON 解析并执行。一旦大模型产生幻觉，漏掉字段或传错类型，整个应用将直接报错崩溃闪退。
+
+在 Redbit 的 `Harness Engineering` 设计下，所有 `AgentTool` 都必须遵循**双源 Schema 防护契约 (Dual-Source Schema Guardianship)**。模型仍然负责提出工具参数，但 runtime 会在执行前验证、归一化和拦截异常参数。
+
+## 接口合同 (`types.ts`)
+
+开发原生 Agent tool 时，需要遵循以下防御式接口：
+
+```typescript
+export interface AgentTool {
+  name: string;
+  description: string;
+  definition: {
+    type: "object";
+    properties: Record<string, any>; // 1. 向大模型宣告的骨架
+    required: string[];
+  };
+  outputSchema?: z.ZodSchema; // 2. 可选的 Zod runtime 输出验证器
+
+  // 风险与执行元数据
+  isSubjective?: boolean;
+  sideEffectDomain?: 'none' | 'file_system' | 'network' | 'cmo';
+  retryable?: boolean;
+
+  execute: (args: any, deps: ToolDependencies) => Promise<any>;
+}
+```
+
+### 1. `outputSchema` 验证
+当 Tool 进入 `ToolCallPipeline.ts` 被触发前，拦截器 `validateToolOutput` 会用 Zod 包裹的模型输出内容。
+如果模型返回不存在的属性，或者把 Boolean 传成 String，runtime 会拒绝不合法 payload，记录结构化 warning，并给模型一次纠正机会，而不是把异常数据直接传给底层 `execute`。
+
+### 2. SideEffect 范围控制
+开发者可以为 Tool 标注 `sideEffectDomain` 和 `isSubjective`（是否具有主观发散性）。这些字段帮助 runtime 判断 retry policy、mutation tracking 和 drift checks。一个只读查询失败，和一个带 `network`、`file_system` 或 `cmo` 副作用的工具失败，应该走不同处理路径。

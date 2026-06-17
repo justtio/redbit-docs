@@ -1,0 +1,65 @@
+---
+title: "FAQ 与排障"
+description: "关于凭证、本地存储、模型差异、生成失败、视频耗时、Agent 边界和 Local Core 的实用回答。"
+---
+
+# FAQ 与排障
+
+需要按表格恢复问题时，请看 [排障手册](./product/troubleshooting.mdx)。涉及供应商 key 和路线边界时，请看 [安全与凭据](./product/security-credentials.mdx)。
+
+<AccordionGroup>
+  <Accordion title="Redbit 中的 BYOK 是什么意思？" icon="key">
+    BYOK 表示你在 Settings 中配置自己的兼容供应商或中继凭证。Redbit 提供工作区、路由、卡片、工作坊、素材码头和 Agent 工具。模型调用、额度、地区访问和计费仍由你使用的供应商账号决定。
+  </Accordion>
+  <Accordion title="API Key 存在哪里？" icon="shield-check">
+    Settings 会把敏感字段持久化到浏览器存储，并在浏览器加密路径可用时先加密 API key、access key、secret key 和 token，再写入 IndexedDB。持久化失败时会使用脱敏 snapshot。不要把 key 粘贴进 prompt、卡片、工作坊脚本或 Agent 聊天。
+  </Accordion>
+  <Accordion title="Redbit 是否包含模型额度？" icon="credit-card">
+    产品文档不应假设包含模型额度。除非单独的商业计划明确说明，否则供应商调用会按你的供应商或中继账号计费。
+  </Accordion>
+  <Accordion title="当前注册表中有哪些模型？" icon="microchip">
+    当前注册表包括 NanoBanana、SeeDream、Flux、GPT Image 等图像组；Veo、Wan 2.2 Animate、Jimeng Video、Seedance 2.0、Kling Motion 等视频组；InfiniteTalk、Pixverse、Jimeng、Kling 等 speech/avatar 组；Minimax、Suno 等音频组；以及 Gemini 和 GPT 系列 describe/Agent LLM。实际可见性取决于 Settings 和中继能力过滤。
+  </Accordion>
+  <Accordion title="为什么同一个 prompt 在不同模型里结果不同？" icon="shuffle">
+    不同模型的训练数据、prompt 解析、参考素材权重、安全过滤、画面比例支持、输出格式和供应商后处理都可能不同。Redbit 会保留可检查的 prompt 和设置，但不会强制不同 provider 产出一致媒体。
+  </Accordion>
+  <Accordion title="什么时候用 Series？" icon="copy">
+    当一个图像 prompt 需要扩展成有规划的一组图时，用 Series，例如产品角度、社媒帧、讲解图、角色设定、海报、品牌 campaign 或分镜。只需要单张结果，或每张图都需要明显不同 prompt 时，用单卡片模式。
+  </Accordion>
+  <Accordion title="什么时候用 Workshop？" icon="clapperboard">
+    当任务具有项目结构时，用 Workshop：脚本、场景、一致性参考、场景图片、视频片段、旁白、音乐、节奏视频或导出。只是比较单次生成或积累可复用参考时，继续使用 Cards。
+  </Accordion>
+  <Accordion title="什么时候用 Agent？" icon="bot">
+    当任务跨越多个明确工作区动作时，用 Agent，例如创建卡片、分组结果、打开 SmartPicker 或准备 Workshop 项目。涉及凭证、计费设置、目标不明确的删除、外部发布或具体画面视觉判断时，请手动操作。
+  </Accordion>
+  <Accordion title="为什么生成失败？" icon="circle-alert">
+    常见原因包括缺少 API key、base URL 错误、供应商额度不足、中继/模型组合不支持、媒体输入不合法、CORS/网络失败、供应商安全策略拒绝，或模型专属要求未满足，例如缺少首帧图片。请检查卡片错误、Settings、所选变体、中继能力提示和供应商控制台。
+  </Accordion>
+  <Accordion title="为什么视频任务比图片任务慢？" icon="timer">
+    视频供应商通常需要排队、轮询任务状态并做后处理。更长时长、更高清晰度、帧参考和供应商负载都会增加耗时。可尝试缩短时长、降低清晰度，或在支持时使用 fast 变体。
+  </Accordion>
+  <Accordion title="Local Core 是什么？" icon="download">
+    Local Core 是可选的 Rust Axum 本地守护进程。它通过本地 HTTP/SSE/WebSocket 端点为部分存储、媒体解析、FFmpeg、MCP gateway、自动化、浏览器扩展协同、插件和本地 CMO 数据工作流提供能力。只配对你自己启动并信任的本地引擎。
+  </Accordion>
+  <Accordion title="Agent 可以执行破坏性动作吗？" icon="shield-alert">
+    某些注册工具会修改工作区状态，例如删除卡片或工作坊项目。runtime 会单独标记破坏性工具，要求明确目标或遵循确认策略，并在继续前归一化每个工具结果。涉及真实账号、外部发布或删除时，请仔细审查 Agent 动作。
+  </Accordion>
+  <Accordion title="为什么开启中继后某些模型消失？" icon="route">
+    Settings 会按中继能力过滤可见模型。某个中继可能支持图像但不支持视频，也可能只支持特定模型家族。你可以改用直接供应商、选择其他中继，或在明确知道端点支持哪些 ID 时配置自定义中继模型列表。
+  </Accordion>
+  <Accordion title="素材和项目存在哪里？" icon="hard-drive">
+    卡片、设置、素材码头元数据、媒体 blob 和工作坊项目会使用 IndexedDB、可用时的 OPFS，或配对 Local Core 后的存储桥等浏览器存储路径。删除浏览器 profile、清理站点数据或存储额度压力都可能移除本地数据，除非你已导出或另行备份。
+  </Accordion>
+  <Accordion title="使用机密素材前要做什么？" icon="lock">
+    先确认所选供应商路由、中继、Local Core 配对和浏览器存储策略。使用条款允许处理该素材的供应商账号。不要假设每个供应商或中继有相同隐私、留存和安全策略。
+  </Accordion>
+  <Accordion title="如何保护 API key？" icon="key-round">
+    key 只放在 Settings，按当前任务配置最小权限；避免在截图、录屏或屏幕共享中暴露 key 字段；如果 key 被粘贴到聊天、卡片、脚本、工单或外部工具，请到供应商控制台轮换。浏览器加密路径可用时，Redbit 会加密 Settings 中的敏感字段；持久化失败时会使用脱敏 snapshot。
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Card title="仍然卡住？" icon="message-circle" color="#3B82F6">
+  联系 [support@redbit.one](mailto:support@redbit.one) 前，请先记录卡片错误、所选模型/变体、中继设置，以及当时是否已配对 Local Core。
+</Card>

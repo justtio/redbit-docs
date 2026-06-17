@@ -1,0 +1,28 @@
+---
+title: "Deployment and Local Engine"
+description: "Understand the Redbit web app, optional local engine, and production configuration boundaries."
+---
+
+# Deployment and Local Engine
+
+Redbit can run as a hosted web application and can optionally pair with a local engine for desktop-side capabilities. The web app handles the UI, model configuration, and browser-side state. The local engine provides explicitly paired local capabilities such as selected media, automation, plugin, or MCP operations.
+
+## Hosted web app
+
+Deploy the Vite build to your preferred static hosting platform. Production configuration should point browser traffic to trusted Supabase functions or your own compatible proxy endpoints.
+
+```bash
+pnpm install
+pnpm build
+```
+
+## Local engine
+
+The local engine listens on `127.0.0.1:19831` and requires pairing before protected operations are available. Users should only pair a local engine they launched themselves.
+
+## Security notes
+
+- Do not ship real API keys in frontend environment variables.
+- Use server-side functions or a trusted relay for shared production secrets.
+- Keep local-engine pairing enabled for filesystem, automation, plugin, and dependency-install operations.
+- Review provider terms and data handling requirements before routing sensitive content through third-party models.

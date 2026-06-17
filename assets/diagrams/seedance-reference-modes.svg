@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Seedance video reference modes</title>
+  <desc id="desc">A diagram of Seedance text-to-video, image-to-video, first-last-frame, and multi-reference modes with validation rules and output settings.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .m1 { fill: #ecfdf5; stroke: #34d399; }
+      .m2 { fill: #eff6ff; stroke: #60a5fa; }
+      .m3 { fill: #fff7ed; stroke: #fb923c; }
+      .m4 { fill: #f5f3ff; stroke: #a78bfa; }
+      .title { font: 700 28px Inter, Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Inter, Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Inter, Arial, sans-serif; fill: #475569; }
+      .tiny { font: 700 12px Inter, Arial, sans-serif; fill: #64748b; text-transform: uppercase; }
+      .line { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 7; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="72" y="70">Seedance 2.0 Card Workflow</text>
+  <text class="small" x="72" y="100">Current product modes: text-to-video, image-to-video, first/last frame, and multimodal references.</text>
+
+  <rect class="card" x="80" y="168" width="224" height="356" rx="20"/>
+  <text class="tiny" x="112" y="208">Card inputs</text>
+  <text class="label" x="112" y="246">Prompt</text>
+  <text class="small" x="112" y="276">Optional media references</text>
+  <text class="small" x="112" y="302">Duration: 4, 5, 6, 8, 10, 15s</text>
+  <text class="small" x="112" y="328">Resolution: 480p, 720p, 1080p</text>
+  <text class="small" x="112" y="354">Audio toggle</text>
+
+  <rect class="m1" x="392" y="140" width="216" height="100" rx="16"/>
+  <text class="label" x="424" y="180">Text to Video</text>
+  <text class="small" x="424" y="208">Prompt only</text>
+
+  <rect class="m2" x="392" y="272" width="216" height="100" rx="16"/>
+  <text class="label" x="424" y="312">Image to Video</text>
+  <text class="small" x="424" y="340">Requires first frame image</text>
+
+  <rect class="m3" x="392" y="404" width="216" height="100" rx="16"/>
+  <text class="label" x="424" y="444">First / Last</text>
+  <text class="small" x="424" y="472">Requires both frame images</text>
+
+  <rect class="m4" x="392" y="536" width="216" height="100" rx="16"/>
+  <text class="label" x="424" y="576">Multi-Reference</text>
+  <text class="small" x="424" y="604">Image, video, audio refs</text>
+
+  <rect class="card" x="722" y="240" width="236" height="168" rx="20"/>
+  <text class="tiny" x="754" y="280">Validation</text>
+  <text class="small" x="754" y="314">No mixed frame and free</text>
+  <text class="small" x="754" y="338">reference roles in one task</text>
+  <text class="small" x="754" y="366">Reference tokens can be</text>
+  <text class="small" x="754" y="390">inserted into prompts</text>
+
+  <rect class="card" x="1060" y="240" width="156" height="168" rx="20"/>
+  <text class="tiny" x="1088" y="280">Provider</text>
+  <text class="label" x="1088" y="316">Seedance</text>
+  <text class="small" x="1088" y="344">Standard or</text>
+  <text class="small" x="1088" y="366">Fast variant</text>
+
+  <path class="line" d="M304 346 C340 228 352 190 392 190"/>
+  <path class="line" d="M304 346 C348 328 358 322 392 322"/>
+  <path class="line" d="M304 346 C348 428 358 454 392 454"/>
+  <path class="line" d="M304 346 C340 514 352 586 392 586"/>
+  <path class="dash" d="M608 190 C680 226 710 260 722 282"/>
+  <path class="dash" d="M608 322 H722"/>
+  <path class="dash" d="M608 454 C680 420 710 388 722 366"/>
+  <path class="dash" d="M608 586 C690 526 716 430 722 390"/>
+  <path class="line" d="M958 324 H1060"/>
+</svg>

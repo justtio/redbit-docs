@@ -1,0 +1,55 @@
+---
+title: "Concepts and Glossary"
+description: "Plain-language definitions for Redbit's core product terms: Cards, Workshop, Agent runtime, Model Registry, Provider, Reference, Series, and Seedance."
+---
+
+# Concepts and Glossary
+
+Use this page when product, customer-success, or engineering conversations need a shared vocabulary. The definitions below describe current product behavior, not future roadmap claims.
+
+## Who Should Read This
+
+| Reader | Use this page to |
+| --- | --- |
+| New users | Understand the names used in the workspace before starting a generation task |
+| Customer-facing teams | Explain Redbit without overstating model ownership, storage guarantees, or Agent autonomy |
+| Team members | Keep product, docs, UI, and support language aligned |
+
+## Before You Read
+
+Redbit is a workspace that coordinates cards, assets, providers, and optional local integrations. It is not itself a model provider. Generation quality, model availability, quota, region access, and retention policy depend on the provider or relay configured in Settings.
+
+## Core Terms
+
+| Term | Meaning | Boundary to remember |
+| --- | --- | --- |
+| Cards | Independent task units on the dashboard for `describe`, `image`, `video`, `audio`, and `speech` work | A card records prompt, model settings, references, status, and results; provider behavior still depends on the selected model |
+| Asset Dock | Local reusable asset library for images, videos, audio, and text | Pinned assets are intended for reuse; temporary/recent assets can be cleaned up |
+| SmartPicker | Shared selector for choosing Asset Dock or project assets | It helps the user choose exact media; it does not infer private intent on its own |
+| Workshop | Project workspace for scripts, scenes, consistency references, generated media, and exports | Use it when the work becomes multi-scene or project-shaped |
+| Agent runtime | Guarded tool loop that reads workspace context and calls registered tools | It is not an unrestricted shell; risky or destructive actions require clear targets or confirmation policy |
+| Model Registry | Catalog of supported model groups, variants, ratios, durations, input requirements, relay mappings, and provider strategies | The registry describes app support; it does not guarantee provider uptime or quota |
+| Provider | Direct model endpoint or compatible relay configured in Settings | Users are responsible for credentials, billing, account limits, and provider terms |
+| Reference | Existing image, video, audio, or text used as input or guidance for another task | Accepted media and role rules vary by model |
+| Series | Image-card mode that plans 3, 4, 6, or 8 related slots from one base prompt | Series is useful for repeatable sets; each slot still needs review |
+| Seedance | Video model family with text-to-video, image-to-video, first/last-frame, and multi-reference modes | Reference roles are stricter than generic video references |
+| Local Core | Optional local engine for selected storage, media, FFmpeg, MCP, automation, plugin, and local data flows | Pair only an engine you launched and trust |
+
+## Term Choices
+
+Keep the English product terms stable in Chinese and English docs where they are UI concepts:
+
+| Canonical term | Use this for |
+| --- | --- |
+| Cards | Dashboard generation/review units |
+| Workshop | Project-level creative production |
+| Agent runtime | Tool execution loop and assistant runtime profile |
+| Model Registry | Catalog-backed model and provider metadata |
+| Provider | Direct provider or relay provider |
+| Reference | Input media/text used by another task |
+| Series | Planned multi-slot image generation |
+| Seedance | Seedance 2.0 video workflows |
+
+## Next Step
+
+Continue to [Quickstart](../quickstart.mdx) if you are setting up Redbit for the first time, or go to [Core Workflows](./workflows.mdx) if you already understand the terms and want the operating flow.

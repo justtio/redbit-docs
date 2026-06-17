@@ -1,0 +1,72 @@
+---
+title: "Quickstart"
+description: "Open Redbit, configure a provider safely, create the first cards, reuse assets, and start a Workshop project."
+---
+
+# Quickstart
+
+This guide gets a new user from a fresh Redbit workspace to the first reusable creative workflow.
+
+## Who Should Read This
+
+Read this if you are opening Redbit for the first time, validating a fresh workspace, or preparing a short customer demo.
+
+## Before You Start
+
+Have access to at least one compatible provider or relay account for the media type you want to test. Keep credentials in Settings, and use [Operational Checklists](./product/checklists.mdx) before sending confidential media.
+
+<Steps>
+  <Step title="Open Redbit">
+    Open Redbit and enter `/dashboard`. For local development, install dependencies with `pnpm install` and start the app with `pnpm dev`.
+  </Step>
+
+  <Step title="Configure the minimum model access">
+    Open Settings. Choose either direct provider configuration or relay mode, then add only the keys needed for the task you are about to run. Use the Settings fields for credentials; do not paste API keys into prompts or Agent chat.
+  </Step>
+
+  <Step title="Select a workspace tab">
+    Use the dashboard tabs for `Describe`, `Image`, `Video`, `Audio`, or `Speech`. Each tab keeps its own cards and model defaults.
+  </Step>
+
+  <Step title="Create and generate a card">
+    Add a card, enter a prompt, attach references if needed, confirm model/variant/ratio settings, then run generation. The result stays attached to the card for comparison, download, reuse, or later recovery.
+  </Step>
+
+  <Step title="Save useful outputs">
+    Pin important results to Asset Dock. Use SmartPicker when a later card, Workshop scene, or Seedance task needs an existing image, video, audio, or text reference.
+  </Step>
+
+  <Step title="Move into Workshop when the task becomes a project">
+    Use `/workshop` for longer flows with scripts, scenes, consistency items, voiceover, music, rhythm videos, and FCPXML/export packages.
+  </Step>
+</Steps>
+
+## First Workflow Examples
+
+| Goal | Short path |
+| --- | --- |
+| Generate an image | Settings -> configure image provider -> `Image` tab -> create card -> prompt -> generate |
+| Describe a reference image | Settings -> configure describe model -> `Describe` tab -> attach image/audio/video -> choose template -> generate |
+| Create a Seedance video | Settings -> configure `seedance` or compatible relay -> `Video` tab -> choose Seedance -> select mode/references -> generate |
+| Build a product video | `/workshop` -> create project from template or blank -> script -> scenes -> images -> videos -> voiceover/music -> export |
+| Ask the Agent to help | Open Agent panel -> describe the goal -> review tool actions and generated cards/assets before continuing |
+
+## Optional: Pair Local Core
+
+Some MCP, media parsing, automation, plugin, storage bridge, and FFmpeg workflows require the Redbit local engine. Download the matching binary, launch it locally, and pair it only with a local engine you started yourself.
+
+<Card title="Need local integrations?" icon="plug-circle-bolt" color="#10B981">
+Use the MCP and local-engine sections to pair trusted local tools. Browser-only generation workflows can run without Local Core when the selected provider route supports them.
+</Card>
+
+## Safety Checklist
+
+- Keep provider credentials in Settings, not in chat prompts.
+- Check the selected model and relay before sending sensitive source media.
+- Use pinned Asset Dock items for material you intend to reuse; temporary recent assets may be cleaned up.
+- Expect video tasks to take longer than image or text tasks because providers often use queued generation and polling.
+- If a provider fails, check the configured base URL, key type, relay capability, model variant, input requirements, and provider quota.
+
+## Next Step
+
+Continue to [First Project Walkthrough](./product/first-project-walkthrough.mdx) for an end-to-end run, or use [Core Workflows](./product/workflows.mdx) to understand how Cards, Asset Dock, Workshop, and the Agent fit together.

@@ -1,0 +1,72 @@
+---
+title: "快速开始"
+description: "打开 Redbit、安全配置供应商、创建第一张卡片、复用素材，并开始工作坊项目。"
+---
+
+# 快速开始
+
+本指南帮助新用户从空工作区开始，完成第一个可复用的创意工作流。
+
+## 谁应该阅读本文
+
+第一次打开 Redbit、验证新工作区，或准备一个简短客户演示时，先读这一页。
+
+## 开始前
+
+请准备至少一个兼容供应商或中继账号，用于你要测试的媒体类型。凭证只放在 Settings；发送机密素材前，先看 [操作检查清单](./product/checklists.mdx)。
+
+<Steps>
+  <Step title="打开 Redbit">
+    打开 Redbit 并进入 `/dashboard`。本地开发时，先运行 `pnpm install`，再用 `pnpm dev` 启动应用。
+  </Step>
+
+  <Step title="配置最小模型访问">
+    打开 Settings。选择直接供应商配置或中继模式，只填入当前任务真正需要的 key。凭证请放在 Settings 字段里，不要粘贴到 prompt 或 Agent 聊天中。
+  </Step>
+
+  <Step title="选择工作区标签">
+    在 dashboard 中选择 `Describe`、`Image`、`Video`、`Audio` 或 `Speech`。每个标签会保留自己的卡片和默认模型设置。
+  </Step>
+
+  <Step title="创建并生成卡片">
+    新建卡片，输入 prompt，按需添加参考素材，确认模型/变体/比例设置后开始生成。结果会保留在卡片上，方便对比、下载、复用或恢复。
+  </Step>
+
+  <Step title="保存有价值的输出">
+    把重要结果置顶到素材码头。后续卡片、工作坊场景或 Seedance 任务需要已有图片、视频、音频或文本时，用 SmartPicker 选择。
+  </Step>
+
+  <Step title="任务变成项目时进入工作坊">
+    对于脚本、场景、一致性素材、旁白、音乐、节奏视频和导出包等长流程，进入 `/workshop` 管理。
+  </Step>
+</Steps>
+
+## 第一个工作流示例
+
+| 目标 | 最短路径 |
+| --- | --- |
+| 生成图片 | Settings -> 配置图像供应商 -> `Image` 标签 -> 新建卡片 -> prompt -> 生成 |
+| 反推参考图 prompt | Settings -> 配置 describe 模型 -> `Describe` 标签 -> 添加图片/音频/视频 -> 选择模板 -> 生成 |
+| 创建 Seedance 视频 | Settings -> 配置 `seedance` 或兼容中继 -> `Video` 标签 -> 选择 Seedance -> 选择模式/参考素材 -> 生成 |
+| 制作产品视频 | `/workshop` -> 从模板或空项目创建 -> 脚本 -> 场景 -> 图片 -> 视频 -> 旁白/音乐 -> 导出 |
+| 让 Agent 协助 | 打开 Agent 面板 -> 描述目标 -> 在继续前检查工具动作和生成的卡片/素材 |
+
+## 可选：配对 Local Core
+
+部分 MCP、媒体解析、自动化、插件、存储桥接和 FFmpeg 工作流需要 Redbit 本地引擎。下载对应二进制文件，在本机启动，并且只配对你自己启动、信任的本地引擎。
+
+<Card title="需要本地集成？" icon="plug-circle-bolt" color="#10B981">
+使用 MCP 和本地引擎区域配对可信工具。如果所选供应商路由支持，普通浏览器侧生成流程可以不依赖 Local Core。
+</Card>
+
+## 安全检查清单
+
+- 凭证只放在 Settings，不放进聊天或 prompt。
+- 发送敏感素材前，确认当前模型和中继路由。
+- 准备复用的素材请置顶到素材码头；临时最近素材可能被清理。
+- 视频任务通常比图像或文本任务更慢，因为供应商常有排队和轮询。
+- 供应商失败时，先检查 base URL、key 类型、中继能力、模型变体、输入要求和供应商额度。
+
+## 下一步
+
+继续读 [第一个项目演练](./product/first-project-walkthrough.mdx) 跑完整端到端流程；也可以读 [核心工作流](./product/workflows.mdx)，理解 Cards、Asset Dock、Workshop 和 Agent 如何串起来。

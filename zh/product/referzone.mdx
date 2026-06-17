@@ -1,0 +1,40 @@
+---
+title: "Reference 素材接入"
+description: "Redbit 如何接收本地素材，在浏览器中预览，并路由到 Cards、Asset Dock、Workshop 和 Agent 工作流。"
+---
+
+# Reference 素材接入
+
+Redbit 的素材接入面把源素材放在生成工作流附近。用户可以导入常见工作素材，在浏览器能力允许时先本地预览，然后再决定下一步是否需要供应商上传、Local Core 处理，或只作为本地工作区参考。
+
+## 谁应该阅读本文
+
+当你需要解释上传或拖入的素材如何变成可复用 Reference，以及本地预览和供应商/Local Core 路由之间的边界时，读这一页。
+
+## 接入行为
+
+<AccordionGroup>
+  <Accordion title="常见工作素材" icon="compress">
+    图片、视频、音频、文本片段和文档类文件可以通过接入面或相关 picker 进入工作区。后续能否使用，取决于所选工作流和 provider 的输入要求。
+  </Accordion>
+  <Accordion title="本地预览锚点" icon="bolt">
+    浏览器文件 API 和 object URL 可以在工作流决定上传到 provider、发送给 Local Core，或保留为本地上下文之前，先预览本地素材。
+  </Accordion>
+</AccordionGroup>
+
+## Reference 可以去哪里
+
+| 目标 | 典型用途 | 边界 |
+| --- | --- | --- |
+| Cards | 把既有图片、视频、音频或文本作为新生成任务输入 | 可接受媒体类型由所选模型决定 |
+| Asset Dock | 保存上传或生成素材，供后续复用 | 置顶素材比临时最近素材更适合长期复用 |
+| Workshop | 作为场景图片、一致性参考、旁白、音乐或项目媒体 | 多场景项目素材应放进 Workshop 管理 |
+| Agent runtime | 让 Agent 带约束打开 SmartPicker 或调用素材工具 | Agent 不应猜测敏感源素材，用户应选择准确资产 |
+
+## 安全边界
+
+本地预览不等于素材永远不会离开设备。只有在工作流把素材发送给已配置 provider、中继、Local Core 端点或外部集成之前，素材才停留在本地。使用机密媒体前，请先确认所选路由。
+
+## 下一步
+
+卡片级参考规则看 [卡片](./cards.mdx)；首帧、尾帧和多参考视频规则看 [Seedance 视频工作流](./seedance-video.mdx)。

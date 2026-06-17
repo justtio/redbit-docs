@@ -1,0 +1,63 @@
+---
+title: "Changelog"
+description: "Track Redbit's evolution — new features, improvements, and fixes."
+---
+
+# Changelog
+
+Stay up to date with the latest changes to Redbit AI Studio.
+
+---
+
+## Unreleased
+
+### ✨ Improvements
+- **Agent runtime profiles** — Settings can test and save custom describe model capabilities locally, with endpoint-scoped profiles for direct and relay runtimes.
+- **Capability-aware routing** — Agent calls now resolve runtime config and capability plans once, then execute with the selected profile instead of re-reading stale Settings state.
+- **Claude-native agent runtime** — Custom describe runtimes can use Anthropic's native Messages API while OpenAI-compatible providers continue to cover DeepSeek/Groq/OpenRouter-style relays.
+- **Provider-first model onboarding** — Custom describe setup now offers provider presets plus live model discovery and manual model ID fallback, reducing the work needed to connect new model providers or relays without developer changes.
+
+### 🛠 Fixes
+- Vision payload injection now follows the resolved runtime/profile capability, preventing non-vision custom endpoints from receiving image inputs.
+- Required probe failures no longer persist successful-looking model profiles.
+
+---
+
+## v0.9.0 — March 2026
+
+### 🚀 New Features
+- **Creative Workshop** — Staged creative project flow: Script → Storyboard → Video generation
+- **Desktop Engine (local-core)** — Rust-native daemon with SQLite WAL, FFmpeg, and MCP Gateway
+- **Harness Engineering v2** — Tool output self-declaration with Zod schema validation
+- **Confidence Calibrator** — Agent self-evaluation and reliability scoring
+
+### ✨ Improvements
+- 5-tier Unified Intent Router reduces avoidable full LLM turns for simple commands
+- DAG concurrency pipeline for parallel tool execution
+- Intent Drift Detector helps detect and recalibrate drift during long tool loops
+- Masonry Canvas virtualization for ultra-low RAM consumption
+
+### 🛡 Security
+- Guarded mutation metadata for destructive and external-effect tools
+- Sensitive settings fields are encrypted before browser IndexedDB persistence when available
+- SQLite WAL mode for crash-safe local persistence
+
+---
+
+## v0.8.0 — February 2026
+
+### 🚀 New Features
+- **MCP Gateway** — Connect external tools via Model Context Protocol
+- **ReferZone** — Drag-and-drop intake for local-first asset preview and routing
+- **Multi-model support** — Veo 3.1, Flux Pro, Suno Chirp 5
+
+### ✨ Improvements
+- Card-based UI replaces linear chat flow
+- IndexedDB persistence for offline card recovery
+- Batch action hooks for multi-card operations
+
+---
+
+<Card title="Feature Request?" icon="lightbulb" color="#F59E0B" href="https://github.com/justtio/redbit/issues">
+  We'd love to hear from you. Submit feature requests and bug reports on GitHub.
+</Card>

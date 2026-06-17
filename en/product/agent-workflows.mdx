@@ -1,0 +1,79 @@
+---
+title: "Agent Workflows"
+description: "How the Redbit Agent turns natural-language requests into bounded card, asset, Workshop, search, MCP, and local-core actions."
+---
+
+# Agent Workflows
+
+The Redbit Agent is a workspace operator, not an unrestricted autonomous process. It reads structured application context, chooses from registered tools, executes through a guarded pipeline, and returns normalized results to the UI.
+
+![Guarded Agent loop diagram showing user request, preflight routing, model runtime, tool pipeline, guards, and UI state.](../../assets/diagrams/redbit-agent-loop.svg)
+
+## Who Should Read This
+
+Read this page if you plan to ask the Agent to create Cards, operate Workshop, search assets, use MCP/Local Core integrations, or explain Agent safety boundaries to users.
+
+## Before You Read
+
+The Agent uses a separately configured assistant runtime. Its behavior depends on the selected model's tool calling, structured output, system prompt, vision, and relay support. Test the Agent runtime profile before relying on it for multi-step work.
+
+## What the Agent Can Work With
+
+| Area | Examples of supported actions |
+| --- | --- |
+| Cards | Create, update, copy, delete, select, group, generate, set references, download, favorite, cancel, retry |
+| Assets | Search, inspect, preview, import, manage, open SmartPicker |
+| Generator | Switch tab, change model, set ratio, clear references |
+| Workshop | Create/open/rename/duplicate/delete projects, manage scenes, optimize script, generate images/videos/voiceover/music/rhythm, export/import archive |
+| Settings | Toggle settings, update model/provider-related settings through registered tools |
+| Search and external sources | Web/search tools, media URL parsing/download, Civitai prompt search, RSS/Hacker News/Reddit/signal tools when configured |
+| Local integrations | MCP resources, Local Core media/automation/plugin paths, FFmpeg helpers, CMO and growth-report tools where available |
+
+## Safe Operating Model
+
+The Agent runtime has several boundaries:
+
+- preflight routing can short-circuit simple UI commands before a full model loop;
+- intent frames normalize user requests into stable actions;
+- model runtime resolution checks catalog metadata or saved capability profiles;
+- tools carry capability, risk, side-effect, idempotency, confirmation, and parallel-safety metadata;
+- destructive tools such as card deletion, project deletion, scene deletion, and workspace cleaning are treated differently from read tools;
+- tool results are normalized into objects with success/error signals before they affect the next model turn;
+- drift checks can re-anchor the model when a long task diverges from the original goal.
+
+## Common Agent Tasks
+
+<AccordionGroup>
+  <Accordion title="Create image variations from one prompt" icon="copy">
+    Ask the Agent to create several image cards, optimize the prompt, generate them, and group the results. The built-in `model_arena` workflow is the clearest current example of this pattern.
+  </Accordion>
+  <Accordion title="Turn an image into a video card" icon="film">
+    The Agent can create an image card, generate it, create a video card, set the image as a reference, and generate the video. Model support still depends on the selected provider and input requirements.
+  </Accordion>
+  <Accordion title="Manage a Workshop project" icon="clapperboard">
+    The Agent can create or open a project, update scripts and scenes, generate scene assets, manage consistency references, and call export tools. Deleting projects or scenes requires a clear target.
+  </Accordion>
+  <Accordion title="Open SmartPicker for assets" icon="folder-search">
+    The Agent can open the picker with accepted asset types and an initial search query, so the user can choose the exact media rather than letting the model guess.
+  </Accordion>
+</AccordionGroup>
+
+## When to Stay Manual
+
+Use manual controls instead of Agent automation when:
+
+- the task involves credentials or provider billing changes;
+- you need visual judgement on a specific frame or design detail;
+- a destructive action has ambiguous targets;
+- external posting, messaging, or automation would affect real accounts;
+- the provider route or model capability is not yet verified.
+
+Use the Agent when the task has multiple explicit UI steps and the desired outcome can be checked in the workspace. Use Workshop when the task is a structured creative project with scenes, scripts, consistency references, and exports. Use manual controls when the main work is visual judgement or credential management.
+
+## Tool Result Contract
+
+Every tool should return an object that can normalize to `{ success: boolean; ... }`. Friendly text without a success signal is not enough for the runtime to trust an action. This is documented in [`docs/contracts/tool-result-contract.md`](../../contracts/tool-result-contract.md).
+
+## Next Step
+
+Continue to [Seedance Video Workflows](./seedance-video.mdx) if your Agent task creates video references, or use [Operational Checklists](./checklists.mdx) before giving the Agent access to configured providers or external integrations.

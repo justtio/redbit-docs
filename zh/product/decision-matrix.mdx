@@ -1,0 +1,62 @@
+---
+title: "选择矩阵"
+description: "判断什么时候使用 Cards、Series、Workshop、Agent、Seedance 或 Model Registry 的实用选择器。"
+---
+
+# 选择矩阵
+
+当用户问“这个任务应该用 Redbit 的哪个入口？”时，用这张矩阵判断。答案应该来自工作形态，而不是哪个按钮最显眼。
+
+## 谁应该阅读本文
+
+| 读者 | 适合用本文解决什么问题 |
+| --- | --- |
+| 新用户 | 为一个任务选择第一个 Redbit 模块 |
+| 创意执行者 | 判断什么时候从一次性生成进入 Series 或 Workshop |
+| 支持或成功团队 | 在不夸大能力的前提下排查用户流程困惑 |
+
+## 选择前
+
+先确认媒体类型、供应商路线、参考输入和评审负责人。如果任务包含敏感媒体，上传或路由源素材前请先读 [安全与凭据](./security-credentials.mdx)。
+
+## 能力选择器
+
+下面的 SVG 是能力选择器。它适合在 onboarding 或支持沟通中，把用户意图映射到能完成任务的最小 Redbit 表面。
+
+![Redbit 能力选择器：把工作映射到 Cards、Series、Workshop、Agent、Seedance 或 Model Registry。](../../assets/diagrams/redbit-decision-matrix.svg)
+
+## 矩阵
+
+| 表面 | 什么时候使用 | 什么时候避免 | 典型输出 |
+| --- | --- | --- | --- |
+| Cards | 任务是一个独立的图像、视频、音频、语音或 describe 任务 | 工作包含多个场景、脚本或导出阶段 | 卡片结果、下载文件、可复用参考 |
+| Series | 一个图像 prompt 应该变成 3、4、6 或 8 张相关图片的规划图组 | 每张图都需要完全不同 prompt 或不同评审规则 | 槽位 brief、可编辑 prompt、已评审图组 |
+| Workshop | 工作有项目结构：脚本、场景、一致性参考、媒体阶段、旁白、音乐或导出 | 任务只是一个 prompt 和一个输出 | 项目状态、场景媒体、旁白/音乐素材、已配置场景下的导出包 |
+| Agent | 请求跨越多个明确 Redbit 动作，并且能在工作区中检查结果 | 任务是录入凭证、计费、视觉判断、模糊删除或未经审查的外部副作用 | 新建或更新的 Cards、素材、Workshop 变更、工具结果 |
+| Seedance | 视频任务需要 text-to-video、image-to-video、first/last-frame 或 multi-reference 角色 | 所选供应商路线不支持 Seedance 变体或所需输入角色 | 带有模式化参考的视频卡片结果 |
+| Model Registry 和 Settings | 问题是模型可见性、供应商路线、中继能力、变体、比例、时长或 Agent runtime profile | 用户只是想视觉比较生成结果 | 已确认的供应商设置、模型选择、能力测试结果 |
+
+## 快速问题
+
+| 问题 | 如果答案是 yes |
+| --- | --- |
+| 工作只需要一个可检查任务单元吗？ | 从 Cards 开始 |
+| 一个 prompt 需要可复用图组吗？ | 使用 Series |
+| 工作包含脚本、场景或导出结构吗？ | 使用 Workshop |
+| 用户想要多个明确 UI 动作吗？ | 确认目标后使用 Agent |
+| 视频依赖首帧、尾帧或多个参考吗？ | 使用 Seedance 特定工作流 |
+| 问题是模型缺失或供应商路线失败吗？ | 检查 Model Registry 和 Settings |
+
+## 交接规则
+
+| 场景 | 最小交接物 |
+| --- | --- |
+| 只用 Cards 探索 | 选中的卡片、prompt 说明、模型和变体、下载结果或置顶素材 |
+| Series 输出 | 基础 prompt、模板、槽位 prompt、选中输出，以及有价值的拒绝项 |
+| Workshop 项目 | 项目名称、场景、选中源图、生成片段、导出设置 |
+| Agent 协作任务 | 原始请求、工具动作、可见工作区变化、未完成确认 |
+| 供应商排障 | 路线、模型家族、变体、错误信息、中继设置、供应商控制台状态 |
+
+## 下一步
+
+用 [第一个项目演练](./first-project-walkthrough.mdx) 把矩阵应用到真实流程；如果选择的表面没有成功完成，请看 [排障手册](./troubleshooting.mdx)。
