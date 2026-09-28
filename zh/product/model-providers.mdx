@@ -35,12 +35,29 @@ Redbit 默认按 BYOK 理解。Settings 可以保存凭证并路由请求，但�
 | 媒体类型 | 当前注册表中的模型组 |
 | --- | --- |
 | Image | NanoBanana、SeeDream、Flux、GPT Image |
-| Video | Veo、Wan 2.2 Animate、Jimeng Video、Seedance 2.0、Kling Motion |
+| Video | Veo、Wan 2.2 Animate、Jimeng Video、Seedance、Kling Motion、Kling Video |
 | Speech / avatar | InfiniteTalk、Pixverse、Jimeng、Kling |
 | Audio / music | Minimax、Suno |
-| Describe / Agent LLM | Gemini 3/2.5/2.0 系列、GPT-5.2、GPT-5.1、GPT-4o |
+| Describe / Agent LLM | Gemini 3.8/3.5/3.1/3/2.5 系列、GPT-5.6/5.5/5.4/5.2/5.1、GPT-4o |
 
 UI 中的实际可见模型会受中继模式和自定义中继模型列表影响，因为 Settings 会按供应商能力过滤可见模型。
+
+### 2026-09 模型盘点
+
+目录已对齐各中继自己发布的目录：AtlasCloud（`GET https://api.atlascloud.ai/api/v1/models`）、WaveSpeed（`https://wavespeed.ai/api/models`）、AceData（`docs.acedata.cloud/openapi/*.json` 的 model 枚举）、Grsai（接口文档 + `grsai.ai/dashboard/models`）。执行 `pnpm audit:models` 可重新核验全部 slug；该检查也会在模型目录相关 PR 与每日定时任务中运行。当前各家族的代际如下（新→旧）：
+
+| 家族 | 已接入变体 |
+| --- | --- |
+| SeeDream | V5 Pro（`bytedance/seedream-v5.0-pro`）、V5、V4.5、V4 |
+| GPT Image | 2.5 Sunburst / 2.5 Flare、2、1.5、1、1 Mini |
+| Seedance | 2.5、2.0 Standard、2.0 Fast、2.0 Mini |
+| Wan Video | 3.0 Prime、3.0、2.7、2.6、2.5 |
+| Kling Motion | V3.0 Pro/Std Motion、V2.6 Pro/Std Motion |
+| Midjourney（Youchuan） | V8.2、V8.1 |
+| Minimax 语音 | 2.8 Turbo/HD、2.6 Turbo/HD、02 Turbo/HD |
+| Suno | Chirp V6 |
+
+已下线并从目录移除：Suno `chirp-v3.5`/`v4`/`v4.5`/`v5`（生成时自动升级为 `chirp-v6`）、Gemini `2.0-flash`（回退到默认 describe 模型）、`gemini-3-pro-preview`（迁移为 `gemini-3.1-pro-preview`）。WaveSpeed 已不再提供 `openai/gpt-image-1*`，该中继上会自动改用 `openai/gpt-image-1.5`。
 
 不要期待同一个 prompt 在不同模型中得到完全相同结果。模型之间可能在 prompt 理解、参考强度、画面比例支持、安全过滤、耗时、输出格式，以及是否支持图像/视频/音频/结构化输入方面不同。
 
@@ -55,7 +72,11 @@ UI 中的实际可见模型会受中继模式和自定义中继模型列表影�
 
 ## 凭证处理
 
-Settings 会把配置持久化到浏览器存储。API key、access key、secret key 和 token 等敏感字段会在可用时先加密再写入 IndexedDB。加密或持久化失败时，Redbit 会写入脱敏 emergency snapshot，而不是直接写入原始凭证。
+Settings 会把配置持久化到浏览器存储。你保存过的凭证会一直保留，直到你修改、删除或清除它：每次保存都会立即写入完整快照，随后在本地 vault 就绪时升级为加密形式（通常几毫秒）。如果当前环境无法加密（例如非安全上下文的 `http://` 站点没有 `crypto.subtle`），凭证会以未加密形式保留而不会被丢弃，因此永远不会丢。
+
+**退出登录会一并清除本机凭证。** 账号会话结束的同时，本机代你保存的凭证全部移除：供应商与中转站的 API key、access/secret key、各类 token、MCP secret 引用，以及本地 vault 密钥本身；base URL、模型选择等非敏感偏好会保留。这正是"共用电脑上退出登录是安全的"的前提，也意味着在该设备下次登录时需要重新输入密钥。为此按钮文案就是「退出并清除本地凭据」。清除流程会先写入无凭证快照、再销毁 vault 密钥，因此不会留下无法解密的残留。
+
+密钥使用**不可导出、与本机绑定的密钥**加密，密钥材料保存在 IndexedDB，永不离开本机、也不会上传到 Redbit。该方案可防离线拷贝、浏览器配置备份与扫存储的窃取程序；不防在本页面运行的脚本。Redbit 不在服务端保存任何密钥，因此清除浏览器数据会一并移除本机密钥。
 
 实用建议：
 

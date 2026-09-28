@@ -11,6 +11,18 @@ Stay up to date with the latest changes to Redbit AI Studio.
 
 ## Unreleased
 
+### 🔄 Model refresh (2026-09)
+- **Catalog verified against live relays** — every generator slug was re-checked against each relay's own published catalog: AtlasCloud and WaveSpeed live APIs, AceData's OpenAPI model enums, and Grsai's API docs + public catalog (`pnpm audit:models`, 142 slugs). New generations added: Seedance 2.5, SeeDream V5 Pro, Wan 3.0 / 3.0 Prime, GPT Image 2.5 (Sunburst + Flare), Kling V3.0 Motion (Std/Pro), Midjourney V8.2, MiniMax Speech 2.8, Suno Chirp V6.
+- **Relay-specific model fixes** — AceData was being sent Seedream/Seedance ids it does not publish (`doubao-seedream-5-0-260128`) and a `gemini-3.0-pro` describe id that never existed; Grsai was sent retired `gpt-image-1*` ids and a `gemini-3.1-pro-preview` id it names `gemini-3.1-pro`. All of them now resolve to ids the relay actually serves.
+- **Picking a model now always calls that model** — SeeDream V4.5 on AtlasCloud and Seedance 2.0 Mini on WaveSpeed had no mapping row, so the request silently fell back to V4 / standard 2.0 while the UI still showed (and billed) the selected variant. A new completeness test fails the build whenever a shipped variant has no mapping for a relay it can be sent to.
+- **Retired upstream models removed** — Suno `chirp-v3.5`/`v4`/`v4.5`/`v5` (cards upgrade to `chirp-v6` on generation), Gemini `2.0-flash`, and `gemini-3-pro-preview` (migrated to `gemini-3.1-pro-preview`).
+- **Agent panel upgrade** — the Fusion deliberation panel now uses Kimi K3 (1M context) instead of Kimi K2.6/K2.7 Code; describe catalog gained Gemini 3.8 Flash and GPT-5.6 with matching token pricing.
+
+### 🔐 Credentials & reliability
+- **Signing out now clears local credentials** — the session ends and provider/relay keys, access/secret keys, tokens, MCP secret references and the local vault key are all removed from the device; base URLs and model choices stay. The button reads *Sign out & clear local credentials*.
+- **Encrypted snapshot is always the final write** — the credential snapshot is written in full first (so a reload can never lose a key), then upgraded to ciphertext, with the two writes strictly ordered so a late plaintext transaction cannot overwrite it.
+- **No duplicate results** — one upstream task consumed twice (in-flight request + recovery poll) no longer renders the same image twice; recovery skips cards that still have an in-flight request.
+
 ### ✨ Improvements
 - **Agent runtime profiles** — Settings can test and save custom describe model capabilities locally, with endpoint-scoped profiles for direct and relay runtimes.
 - **Capability-aware routing** — Agent calls now resolve runtime config and capability plans once, then execute with the selected profile instead of re-reading stale Settings state.

@@ -11,6 +11,18 @@ description: "追踪 Redbit 的进化 — 新功能、改进和修复。"
 
 ## 未发布
 
+### 🔄 模型盘点（2026-09）
+- **对齐线上中继目录** — 全部生成模型 slug 已对照各中继自己发布的目录重新核验：AtlasCloud / WaveSpeed 线上接口、AceData 的 OpenAPI model 枚举、Grsai 的接口文档与公开目录（`pnpm audit:models`，142 条 slug）；新增代际：Seedance 2.5、SeeDream V5 Pro、Wan 3.0 / 3.0 Prime、GPT Image 2.5（Sunburst + Flare）、Kling V3.0 Motion（Std/Pro）、Midjourney V8.2、MiniMax Speech 2.8、Suno Chirp V6。
+- **修复中继专属模型 id** — AceData 之前收到它并未发布的 Seedream/Seedance id（`doubao-seedream-5-0-260128`）以及从未存在过的 describe id `gemini-3.0-pro`；Grsai 之前收到已下线的 `gpt-image-1*` 与它命名为 `gemini-3.1-pro` 的 `gemini-3.1-pro-preview`。现在全部解析为该中继确实提供的 id。
+- **选中哪个模型就调用哪个模型** — AtlasCloud 上的 SeeDream V4.5、WaveSpeed 上的 Seedance 2.0 Mini 缺少映射行，请求会静默回落到 V4 / 标准 2.0，而界面仍显示（并计费）所选变体。新增的完整性测试会在"已上线变体缺少对应中继映射"时直接让构建失败。
+- **清理已下线模型** — Suno `chirp-v3.5`/`v4`/`v4.5`/`v5`（生成时自动升级为 `chirp-v6`）、Gemini `2.0-flash`、`gemini-3-pro-preview`（迁移为 `gemini-3.1-pro-preview`）。
+- **Agent 评议组升级** — Fusion 评议组由 Kimi K2.6/K2.7 Code 换成 Kimi K3（1M 上下文）；describe 目录新增 Gemini 3.8 Flash 与 GPT-5.6，并同步 token 定价。
+
+### 🔐 凭据与可靠性
+- **退出登录会清除本机凭证** — 会话结束的同时移除本机的供应商/中转站 key、access/secret key、各类 token、MCP secret 引用与本地 vault 密钥；base URL 与模型选择等非敏感偏好保留。按钮文案为「退出并清除本地凭据」。
+- **加密快照一定是最后一次写入** — 凭证快照先完整落盘（刷新不会丢 key），随后升级为密文；两次写入严格串行，迟到的明文事务无法覆盖密文。
+- **不再出现重复结果** — 同一个上游任务被消费两次（在飞请求 + 恢复轮询）不再渲染出两条相同结果；恢复流程会跳过仍有在飞请求的卡片。
+
 ### ✨ 改进
 - **Agent 运行时画像** — Settings 可本地测试并保存自定义 describe 模型能力，并按 endpoint 隔离 direct 与 relay 运行时画像。
 - **能力感知路由** — Agent 调用会先解析 runtime config 与 capability plan，再按选中的画像执行，避免重新读取过期 Settings 状态。

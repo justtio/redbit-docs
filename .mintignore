@@ -1,0 +1,27 @@
+# Files and directories under docs/ that must never be published.
+#
+# This file is what makes "Mintlify reads the private repo's docs/ directory"
+# a safe setup: .mintignore removes matching files from the build completely
+# (they are not published, not indexed, and not reachable by URL), unlike
+# hidden pages which stay accessible.
+#
+# IMPORTANT — every pattern below is anchored with a leading slash, because an
+# unanchored `architecture/` would match `en/architecture/` and `zh/architecture/`
+# too. Those two ARE published pages. Anchoring keeps exclusion to the docs root.
+
+# Internal engineering and strategy notes (never user-facing).
+/architecture/
+/contracts/
+/product-strategy/
+
+# Diagrams generated for the internal architecture deep-dive docs. The published
+# pages only reference the locale-prefixed `en-*` / `zh-*` diagrams, so the
+# deep-dive series is excluded here to keep internal system diagrams off the
+# public site.
+/generated/mermaid/architecture-deep-dive-*
+
+# Internal screenshot production spec. It states "本文件供截图制作参考，不面向用户"
+# and was deliberately removed from the public docs site, so it must stay
+# excluded when Mintlify reads this directory directly — otherwise it would be
+# published again by accident.
+/zh/product/seedance-ecommerce-guide-screenshot-spec.md

@@ -35,12 +35,29 @@ Redbit is BYOK by default. Settings can store credentials and route requests, bu
 | Media type | Model groups in the current registry |
 | --- | --- |
 | Image | NanoBanana, SeeDream, Flux, GPT Image |
-| Video | Veo, Wan 2.2 Animate, Jimeng Video, Seedance 2.0, Kling Motion |
+| Video | Veo, Wan 2.2 Animate, Jimeng Video, Seedance, Kling Motion, Kling Video |
 | Speech / avatar | InfiniteTalk, Pixverse, Jimeng, Kling |
 | Audio / music | Minimax, Suno |
-| Describe / Agent LLM | Gemini 3/2.5/2.0 family, GPT-5.2, GPT-5.1, GPT-4o |
+| Describe / Agent LLM | Gemini 3.8/3.5/3.1/3/2.5 family, GPT-5.6/5.5/5.4/5.2/5.1, GPT-4o |
 
 Exact availability in the UI can change when relay mode or custom relay model lists are enabled, because Settings filters visible models by provider capability.
+
+### 2026-09 model refresh
+
+The catalog is verified against each relay's own published catalog: AtlasCloud (`GET https://api.atlascloud.ai/api/v1/models`), WaveSpeed (`https://wavespeed.ai/api/models`), AceData (`docs.acedata.cloud/openapi/*.json` model enums) and Grsai (its API docs plus `grsai.ai/dashboard/models`). Run `pnpm audit:models` to re-check every slug; it also runs on model-registry pull requests and nightly. The current generation per family:
+
+| Family | Shipped variants (newest first) |
+| --- | --- |
+| SeeDream | V5 Pro (`bytedance/seedream-v5.0-pro`), V5, V4.5, V4 |
+| GPT Image | 2.5 Sunburst / 2.5 Flare, 2, 1.5, 1, 1 Mini |
+| Seedance | 2.5, 2.0 Standard, 2.0 Fast, 2.0 Mini |
+| Wan Video | 3.0 Prime, 3.0, 2.7, 2.6, 2.5 |
+| Kling Motion | V3.0 Pro/Std Motion, V2.6 Pro/Std Motion |
+| Midjourney (Youchuan) | V8.2, V8.1 |
+| Minimax speech | 2.8 Turbo/HD, 2.6 Turbo/HD, 02 Turbo/HD |
+| Suno | Chirp V6 |
+
+Retired upstream and removed from the catalog: Suno `chirp-v3.5`/`v4`/`v4.5`/`v5` (promoted to `chirp-v6` on generation), Gemini `2.0-flash` (falls back to the default describe model) and `gemini-3-pro-preview` (migrated to `gemini-3.1-pro-preview`). WaveSpeed no longer serves `openai/gpt-image-1*`, so those variants are promoted to `openai/gpt-image-1.5` on that relay.
 
 Different models should not be expected to produce identical results from the same prompt. They may differ in prompt interpretation, reference strength, aspect-ratio support, safety filters, latency, output format, and whether they support image, video, audio, or structured inputs.
 
@@ -55,7 +72,11 @@ Different models should not be expected to produce identical results from the sa
 
 ## Credential Handling
 
-Settings persists configuration in browser storage. Sensitive fields such as API keys, access keys, secret keys, and tokens are encrypted before persistence when available. If encryption or persistence fails, Redbit stores a redacted emergency snapshot rather than writing raw secrets.
+Settings persists configuration in browser storage. Once you save a credential it stays saved until you change, delete, or clear it: the full snapshot is written immediately, then upgraded to its encrypted form as soon as the local vault finishes (usually a few milliseconds). If encryption is unavailable — for example a non-secure `http://` origin without `crypto.subtle` — the credential is kept unencrypted rather than discarded, so it is never lost.
+
+**Signing out clears local credentials too.** The account session ends and every credential this device stored on your behalf is removed: provider and relay API keys, access/secret keys, tokens, MCP secret references, and the local vault key itself. Base URLs, model choices and other non-secret preferences stay. This is what makes "sign out" safe on a shared machine — and it means you re-enter your keys the next time you sign in on that device. The button is labelled *Sign out & clear local credentials* for that reason. The credential-free snapshot is written before the vault key is destroyed, so no undecryptable leftover is left behind.
+
+Keys are encrypted with a **non-exportable, device-bound key** kept in IndexedDB. They stay on this device and are never uploaded to Redbit. That protects against offline copies, browser-profile backups, and storage-scanning infostealers; it does not protect against scripts running on the page itself. Redbit keeps no server-side copy, so clearing browser data removes the stored keys with it.
 
 Practical guidance:
 
