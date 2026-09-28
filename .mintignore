@@ -19,6 +19,7 @@
 # deep-dive series is excluded here to keep internal system diagrams off the
 # public site.
 /generated/mermaid/architecture-deep-dive-*
+/generated/mermaid/architecture-redbit-project-interview-deep-dive-*
 
 # Internal screenshot production spec. It states "本文件供截图制作参考，不面向用户"
 # and was deliberately removed from the public docs site, so it must stay
